@@ -35,6 +35,15 @@ CREATE TABLE plato
     CONSTRAINT categoria_check CHECK ( categoria IN ('Comida', 'Bebida', 'Postre') )
 );
 
+CREATE TABLE cliente
+(
+    id NUMBER PRIMARY KEY ,
+    telefono VARCHAR2(10),
+    datos DATOS_BASICOS,
+    direccion DIRECCION,
+    CONSTRAINT formato_telefono CHECK ( REGEXP_LIKE(telefono, '[1-9]{1}[0-9]{9}') )
+);
+
 CREATE TABLE sucursal
 (
     id             NUMBER PRIMARY KEY,
