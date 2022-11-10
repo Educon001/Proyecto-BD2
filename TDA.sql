@@ -52,4 +52,45 @@ CREATE OR REPLACE TYPE BODY DATOS_BASICOS AS
 END;
 
 --HORARIO
-CREATE OR REPLACE TYPE HORARIO AS OBJECT(hora NUMBER);
+CREATE OR REPLACE TYPE HORARIO AS OBJECT
+(
+    hora_inicio   interval day to second,
+    hora_fin      interval day to second,
+    CONSTRUCTOR FUNCTION horario(hora_inicio interval day to second, hora_fin interval day to second) RETURN SELF AS RESULT
+);
+
+CREATE OR REPLACE TYPE BODY HORARIO AS
+    CONSTRUCTOR FUNCTION horario(hora_inicio interval day to second, hora_fin interval day to second) RETURN SELF AS RESULT
+        IS
+    BEGIN
+        IF (hora_fin >= hora_inicio OR hora_fin IS null) THEN
+            SELF.hora_inicio := hora_inicio;
+            SELF.hora_fin := hora_fin;
+        ELSE
+            RAISE_APPLICATION_ERROR(-20003, 'La hora fin debe ser mayor o igual a la hora de inicio');
+        END IF;
+        RETURN;
+    END;
+END;
+
+--CALENDARIO
+CREATE OR REPLACE TYPE CALENDARIO AS OBJECT
+(
+    fecha_inicio DATE,
+    fecha_fin    DATE,
+    CONSTRUCTOR FUNCTION calendario(fecha_inicio DATE, fecha_fin DATE) RETURN SELF AS RESULT
+);
+
+CREATE OR REPLACE TYPE BODY CALENDARIO AS
+    CONSTRUCTOR FUNCTION calendario(fecha_inicio DATE, fecha_fin DATE) RETURN SELF AS RESULT
+        IS
+    BEGIN
+        IF (fecha_fin >= fecha_inicio OR fecha_fin IS null) THEN
+            SELF.fecha_inicio := fecha_inicio;
+            SELF.fecha_fin := fecha_fin;
+        ELSE
+            RAISE_APPLICATION_ERROR(-20004, 'Fecha fin debe ser mayor o igual a fecha de inicio');
+        END IF;
+        RETURN;
+    END;
+END;
