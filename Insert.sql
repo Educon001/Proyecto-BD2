@@ -1,13 +1,13 @@
+--RESTAURANTE
 INSERT INTO restaurante
 VALUES (1, 'Casa dello chef', FILE_TO_BLOB('logo.jpg'));
 
---Platos
+--PLATOS
 --comida
 INSERT INTO plato (CODIGO, NOMBRE, CATEGORIA, DESCRIPCION, PRECIO_UNITARIO, FOTO, RECETA)
 VALUES (PLATO_SEQ.nextval, 'Pizza', 'Comida', 'Pizza margarita', 10, FILE_TO_BLOB('pizza.jpg'),'Queso mozarella, tomate y masa');
 INSERT INTO plato (CODIGO, NOMBRE, CATEGORIA, DESCRIPCION, PRECIO_UNITARIO, FOTO, RECETA)
-VALUES (PLATO_SEQ.nextval, 'Hamburguesa', 'Comida', 'Hamburguesa con queso', 6, FILE_TO_BLOB('hamburguesa.jpg'),
-        'Pan, Queso, lechuga, tomate y salsas');
+VALUES (PLATO_SEQ.nextval, 'Hamburguesa', 'Comida', 'Hamburguesa con queso', 6, FILE_TO_BLOB('hamburguesa.jpg'),'Pan, Queso, lechuga, tomate y salsas');
 INSERT INTO plato (CODIGO, NOMBRE, CATEGORIA, DESCRIPCION, PRECIO_UNITARIO, FOTO, RECETA)
 VALUES (PLATO_SEQ.nextval, 'Pasta', 'Comida', 'Pasta con carne', 5, FILE_TO_BLOB('pasta.jpg'), 'Pasta y carne');
 INSERT INTO plato (CODIGO, NOMBRE, CATEGORIA, DESCRIPCION, PRECIO_UNITARIO, FOTO, RECETA)
@@ -37,8 +37,23 @@ VALUES (PLATO_SEQ.nextval, 'Brownie con helado', 'Postre', 'Brownie caliente con
 INSERT INTO plato (CODIGO, NOMBRE, CATEGORIA, DESCRIPCION, PRECIO_UNITARIO, FOTO, RECETA)
 VALUES (PLATO_SEQ.nextval, 'Banana split', 'Postre', 'Banana', 3, FILE_TO_BLOB('banana_split.jpg'), 'Cambur y helado');
 
+--SUCURSALES
 INSERT INTO sucursal
 VALUES (1, DIRECCION(1, 1, 'la castellana'), 'la castellana',
         HORARIO(to_dsinterval('0 8:00:00'), to_dsinterval('0 17:00:00')), 1);
+
+--PEDIDOS
+INSERT INTO PEDIDO (ID_SUCURSAL,ID,TIPO,FECHA_HORA) VALUES (1,PEDIDO_SEQ.nextval,'EN LOCAL',SYSDATE);
+    INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (1,1,2);
+    INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (2,1,3);
+INSERT INTO PEDIDO (ID_SUCURSAL,ID,TIPO,FECHA_HORA) VALUES (1,PEDIDO_SEQ.nextval,'EN LOCAL',SYSDATE);
+    INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (1,2,3);
+    INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (4,2,1);
+INSERT INTO PEDIDO (ID_SUCURSAL,ID,TIPO,FECHA_HORA) VALUES (1,PEDIDO_SEQ.nextval,'EN LOCAL',SYSDATE);
+    INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (3,3,3);
+    INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (5,3,2);
+INSERT INTO PEDIDO (ID_SUCURSAL,ID,TIPO,FECHA_HORA) VALUES (1,PEDIDO_SEQ.nextval,'EN LOCAL',SYSDATE);
+    INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (2,4,3);
+    INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (4,4,2);
 
 COMMIT;

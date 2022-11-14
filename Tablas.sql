@@ -299,3 +299,4 @@ CREATE TABLE egreso
 
 --Secuencias
 CREATE SEQUENCE plato_seq;
+CREATE SEQUENCE pedido_seq;
