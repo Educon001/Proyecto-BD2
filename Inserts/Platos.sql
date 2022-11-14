@@ -1,7 +1,3 @@
-INSERT INTO restaurante
-VALUES (1, 'Casa dello chef', FILE_TO_BLOB('logo.jpg'));
-
---Platos
 --comida
 INSERT INTO plato (CODIGO, NOMBRE, CATEGORIA, DESCRIPCION, PRECIO_UNITARIO, FOTO, RECETA)
 VALUES (PLATO_SEQ.nextval, 'Pizza', 'Comida', 'Pizza margarita', 10, FILE_TO_BLOB('pizza.jpg'),'Queso mozarella, tomate y masa');
@@ -36,9 +32,3 @@ INSERT INTO plato (CODIGO, NOMBRE, CATEGORIA, DESCRIPCION, PRECIO_UNITARIO, FOTO
 VALUES (PLATO_SEQ.nextval, 'Brownie con helado', 'Postre', 'Brownie caliente con helado', 2.5, FILE_TO_BLOB('brownie.jpg'), 'Brownie y helado');
 INSERT INTO plato (CODIGO, NOMBRE, CATEGORIA, DESCRIPCION, PRECIO_UNITARIO, FOTO, RECETA)
 VALUES (PLATO_SEQ.nextval, 'Banana split', 'Postre', 'Banana', 3, FILE_TO_BLOB('banana_split.jpg'), 'Cambur y helado');
-
-INSERT INTO sucursal
-VALUES (1, DIRECCION(1, 1, 'la castellana'), 'la castellana',
-        HORARIO(to_dsinterval('0 8:00:00'), to_dsinterval('0 17:00:00')), 1);
-
-COMMIT;
