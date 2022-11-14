@@ -297,3 +297,5 @@ CREATE TABLE egreso
     CONSTRAINT egreso_orden_fk FOREIGN KEY (id_orden) REFERENCES orden_compra (id)
 );
 
+--Secuencias
+CREATE SEQUENCE plato_seq;
