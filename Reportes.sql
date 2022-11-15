@@ -1,3 +1,4 @@
+--Reporte de platos de mayor demanda
 CREATE OR REPLACE PROCEDURE reporte1(tipo_pedido PEDIDO.tipo%type, fechas CALENDARIO,
                                      tipo_plato PLATO.categoria%type, c1 OUT sys_refcursor) IS
 BEGIN
@@ -12,7 +13,7 @@ BEGIN
                fechas.FECHA_INICIO as "Fecha desde",
                fechas.FECHA_FIN as "Fecha hasta",
                cant.cantidad as cantidad,
-               ROUND((cant.cantidad/total.total_platos)*100,2) || '%' as demanda,
+               ROUND((cant.cantidad/total.total_platos)*100,2) as demanda,
                P2.PRECIO_UNITARIO
         FROM SUCURSAL S
                  join PEDIDO P on S.ID = P.ID_SUCURSAL
@@ -43,26 +44,29 @@ BEGIN
         ORDER BY S.NOMBRE, demanda desc) T on P.NOMBRE=T.Plato;
 END;
 
-DECLARE
-    c1        SYS_REFCURSOR;
-    suc       VARCHAR2(100);
-    pla       VARCHAR2(100);
-    fot       BLOB;
-    descri    VARCHAR2(200);
-    tipo      VARCHAR2(100);
-    fecha_ini DATE;
-    fecha_fin DATE;
-    cant      NUMBER;
-    demanda   VARCHAR2(6);
-    pu        NUMBER;
+--Reporte de empleados del restaurante por sucursal y su rol
+CREATE OR REPLACE procedure reporte4(sucursal SUCURSAL.nombre%type, fechas CALENDARIO,
+                                     rol ROL.nombre%type, c4 OUT SYS_REFCURSOR) IS
 BEGIN
-    reporte1('EN LOCAL', CALENDARIO(TO_DATE('10/11/2022', 'DD/MM/YYYY'), TO_DATE('20/11/2022', 'DD/MM/YYYY')), 'Comida',
-             c1);
-    FETCH c1 INTO suc,pla,fot,descri,tipo,fecha_ini,fecha_fin,cant,demanda,pu;
-    WHILE c1%FOUND
-        LOOP
-            DBMS_OUTPUT.PUT_LINE(suc || ' | ' || pla || ' | ' || descri || ' | ' || tipo || ' | ' ||
-                                 fecha_ini || ' | ' || fecha_fin || ' | ' || cant || ' | ' || demanda || ' | ' || pu);
-            FETCH c1 INTO suc,pla,fot,descri,tipo,fecha_ini,fecha_fin,cant,demanda,pu;
-        end loop;
+    OPEN c4 FOR
+        SELECT S.NOMBRE as Sucursal,
+               E.FOTO_CARNET,
+               'V' || E.DATOS.CI,
+               E.DATOS.PRIMER_NOMBRE,
+               E.DATOS.PRIMER_APELLIDO,
+               E.FECHA_NACIMIENTO,
+               E.SEXO,
+               C.FECHAS.FECHA_INICIO,
+               C.FECHAS.FECHA_FIN,
+               C.MOTIVO_EGRESO,
+               R.NOMBRE as rol,
+               R.DESCRIPCION
+        FROM CONTRATO C
+                 join EMPLEADO E on E.ID = C.ID_EMPLEADO
+                 join ROL R on R.ID = C.ID_ROL
+                 join SUCURSAL S on S.ID = C.ID_SUCURSAL
+        WHERE S.NOMBRE = sucursal
+          AND R.NOMBRE = rol
+          AND ((C.FECHAS.FECHA_INICIO BETWEEN fechas.FECHA_FIN AND fechas.FECHA_FIN) OR
+               (C.FECHAS.FECHA_FIN BETWEEN fechas.FECHA_INICIO AND fechas.FECHA_FIN));
 end;

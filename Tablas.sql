@@ -300,3 +300,6 @@ CREATE TABLE egreso
 --Secuencias
 CREATE SEQUENCE plato_seq;
 CREATE SEQUENCE pedido_seq;
+CREATE SEQUENCE empleado_seq;
+CREATE SEQUENCE rol_seq;
+CREATE SEQUENCE contrato_seq;
