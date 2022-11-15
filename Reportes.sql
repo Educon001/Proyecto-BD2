@@ -1,4 +1,4 @@
---Reporte de platos de mayor demanda
+--1. Reporte de platos de mayor demanda
 CREATE OR REPLACE PROCEDURE reporte1(tipo_pedido PEDIDO.tipo%type, fechas CALENDARIO,
                                      tipo_plato PLATO.categoria%type, c1 OUT sys_refcursor) IS
 BEGIN
@@ -44,20 +44,30 @@ BEGIN
         ORDER BY S.NOMBRE, demanda desc) T on P.NOMBRE=T.Plato;
 END;
 
---Reporte de empleados del restaurante por sucursal y su rol
+--4. Reporte de empleados del restaurante por sucursal y su rol
 CREATE OR REPLACE procedure reporte4(sucursal SUCURSAL.nombre%type, fechas CALENDARIO,
                                      rol ROL.nombre%type, c4 OUT SYS_REFCURSOR) IS
+    S1 VARCHAR2(100);
+    R1 VARCHAR2(100);
 BEGIN
+    S1:= '%' || sucursal || '%';
+    R1:= '%' || rol || '%';
+    if sucursal IS NULL then
+        S1:='%';
+    end if;
+    if rol IS NULL then
+        R1:='%';
+    end if;
     OPEN c4 FOR
         SELECT S.NOMBRE as Sucursal,
                E.FOTO_CARNET,
-               'V' || E.DATOS.CI,
-               E.DATOS.PRIMER_NOMBRE,
-               E.DATOS.PRIMER_APELLIDO,
+               'V' || E.DATOS.CI as CI,
+               E.DATOS.PRIMER_NOMBRE as Nombre,
+               E.DATOS.PRIMER_APELLIDO as Apellido,
                E.FECHA_NACIMIENTO,
                E.SEXO,
-               C.FECHAS.FECHA_INICIO,
-               C.FECHAS.FECHA_FIN,
+               C.FECHAS.FECHA_INICIO as fecha_desde,
+               C.FECHAS.FECHA_FIN as fecha_hasta,
                C.MOTIVO_EGRESO,
                R.NOMBRE as rol,
                R.DESCRIPCION
@@ -65,8 +75,37 @@ BEGIN
                  join EMPLEADO E on E.ID = C.ID_EMPLEADO
                  join ROL R on R.ID = C.ID_ROL
                  join SUCURSAL S on S.ID = C.ID_SUCURSAL
-        WHERE S.NOMBRE = sucursal
-          AND R.NOMBRE = rol
-          AND ((C.FECHAS.FECHA_INICIO BETWEEN fechas.FECHA_FIN AND fechas.FECHA_FIN) OR
-               (C.FECHAS.FECHA_FIN BETWEEN fechas.FECHA_INICIO AND fechas.FECHA_FIN));
+        WHERE S.NOMBRE LIKE S1
+          AND R.NOMBRE LIKE R1
+          AND ((C.FECHAS.FECHA_INICIO BETWEEN fechas.FECHA_INICIO AND fechas.FECHA_FIN) OR
+               (C.FECHAS.FECHA_FIN BETWEEN fechas.FECHA_INICIO AND fechas.FECHA_FIN))
+        ORDER BY S.NOMBRE;
 end;
+
+--5. Reporte de sucursales del restaurante
+create or replace FUNCTION porcentaje_promedio_satisfaccion(id_suc NUMBER)
+RETURN NUMBER IS
+promedio NUMBER;
+porcentaje NUMBER;
+begin
+
+    SELECT AVG(PUNTAJE) INTO promedio
+    FROM PEDIDO P JOIN CALIFICACION C
+    ON (P.id = C.id_pedido)
+    WHERE P.id_sucursal = id_suc;
+
+    porcentaje := promedio/5;
+
+    RETURN porcentaje;
+
+end;
+
+create PROCEDURE REPORTE5 (crest OUT sys_refcursor) IS
+BEGIN
+    OPEN crest
+    FOR SELECT S.NOMBRE AS Nombre_Sucursal, R.NOMBRE AS Nombre_Restaurante,
+               R.LOGO AS Logo_Restaurante, S.DIRECCION.DESCRIPCION AS Direccion_escrita,
+               S.DIRECCION.LATITUD, S.DIRECCION.LONGITUD, porcentaje_promedio_satisfaccion(S.ID) AS PROMEDIO
+    FROM RESTAURANTE R, SUCURSAL S
+    ORDER BY S.ID;
+END;
