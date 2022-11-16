@@ -59,6 +59,12 @@ INSERT INTO PEDIDO (ID_SUCURSAL,ID,TIPO,FECHA_HORA) VALUES (1, PEDIDO_SEQ.nextva
     INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (5,5,2);
     INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (6,5,1);
     INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (7,5,1);
+INSERT INTO PEDIDO (id, fecha_hora) VALUES (100,to_date('15/11/2022 9:00:00', 'dd/mm/yyyy hh:mi:ss'));
+INSERT INTO PEDIDO (id, fecha_hora) VALUES (101,to_date('15/11/2022 9:30:00', 'dd/mm/yyyy hh:mi:ss'));
+INSERT INTO PEDIDO (id, fecha_hora) VALUES (102,to_date('15/11/2022 10:00:00', 'dd/mm/yyyy hh:mi:ss'));
+INSERT INTO PEDIDO (id, fecha_hora) VALUES (103,to_date('15/11/2022 10:30:00', 'dd/mm/yyyy hh:mi:ss'));
+INSERT INTO PEDIDO (id, fecha_hora) VALUES (104,to_date('15/11/2022 11:00:00', 'dd/mm/yyyy hh:mi:ss'));
+INSERT INTO PEDIDO (id, fecha_hora) VALUES (105,to_date('15/11/2022 2:00:00', 'dd/mm/yyyy hh:mi:ss'));
 
 --EMPLEADOS
 INSERT INTO EMPLEADO (ID, FOTO_CARNET, FECHA_NACIMIENTO, SEXO, DATOS)
@@ -84,5 +90,13 @@ INSERT INTO CONTRATO (ID, FECHAS, MOTIVO_EGRESO, ID_ROL, ID_EMPLEADO, ID_SUCURSA
 VALUES (CONTRATO_SEQ.nextval, CALENDARIO('18-jan-2022', null), null, 2, 2, 1);
 INSERT INTO CONTRATO (ID, FECHAS, MOTIVO_EGRESO, ID_ROL, ID_EMPLEADO, ID_SUCURSAL)
 VALUES (CONTRATO_SEQ.nextval, CALENDARIO('1-mar-2022', null), null, 3, 3, 1);
+
+--Menu_dia
+insert into menu_dia values(1,1,to_date('2022-11-15', 'yyyy-mm-dd'));
+insert into menu_dia values(2,1,to_date('2022-11-12', 'yyyy-mm-dd'));
+
+--promos
+insert into promocion values(1,1,'2x1',CALENDARIO(to_date('2022-11-09','yyyy-mm-dd'),to_date('2022-11-12','yyyy-mm-dd')),10,'promoción',10);
+insert into plato_promocion values(3,1,10);
 
 COMMIT;

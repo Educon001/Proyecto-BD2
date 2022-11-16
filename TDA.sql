@@ -54,9 +54,12 @@ END;
 --HORARIO
 CREATE OR REPLACE TYPE HORARIO AS OBJECT
 (
-    hora_inicio   interval day to second,
-    hora_fin      interval day to second,
-    CONSTRUCTOR FUNCTION horario(hora_inicio interval day to second, hora_fin interval day to second) RETURN SELF AS RESULT
+    hora_inicio interval day to second,
+    hora_fin    interval day to second,
+    CONSTRUCTOR FUNCTION horario(hora_inicio interval day to second, hora_fin interval day to second) RETURN SELF AS RESULT,
+    STATIC FUNCTION formatearHora(hora interval day to second) RETURN VARCHAR2,
+    MEMBER FUNCTION getHoraInicio RETURN VARCHAR2,
+    MEMBER FUNCTION getHoraFin RETURN VARCHAR2
 );
 
 CREATE OR REPLACE TYPE BODY HORARIO AS
@@ -70,6 +73,32 @@ CREATE OR REPLACE TYPE BODY HORARIO AS
             RAISE_APPLICATION_ERROR(-20003, 'La hora fin debe ser mayor o igual a la hora de inicio');
         END IF;
         RETURN;
+    END;
+    STATIC FUNCTION formatearHora(intervalo interval day to second) RETURN VARCHAR2
+        IS
+        hora NUMBER;
+        minuto NUMBER;
+    BEGIN
+        hora:= EXTRACT(HOUR FROM intervalo);
+        minuto:= EXTRACT(MINUTE FROM intervalo);
+        if hora<12 then
+            RETURN to_char(hora, 'fm00') || ':' ||to_char(minuto, 'fm00') || ' A.M.';
+        else if hora>12 then
+            RETURN to_char(hora-12, 'fm00') || ':' ||to_char(minuto, 'fm00') || ' P.M.';
+        else
+            RETURN to_char(hora, 'fm00') || ':' ||to_char(minuto, 'fm00') || ' P.M.';
+        end if;
+        end if;
+    END;
+    MEMBER FUNCTION getHoraInicio RETURN VARCHAR2
+        IS
+    BEGIN
+        RETURN HORARIO.formatearHora(hora_inicio);
+    END;
+    MEMBER FUNCTION getHoraFin RETURN VARCHAR2
+        IS
+    BEGIN
+        RETURN HORARIO.formatearHora(hora_fin);
     END;
 END;
 
