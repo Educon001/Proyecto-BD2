@@ -1,7 +1,11 @@
 --1. Reporte de platos de mayor demanda
 CREATE OR REPLACE PROCEDURE reporte1(tipo_pedido PEDIDO.tipo%type, fechas CALENDARIO,
                                      tipo_plato PLATO.categoria%type, c1 OUT sys_refcursor) IS
+    tp1 VARCHAR2(20);
+    tp2 VARCHAR2(20);
 BEGIN
+    tp1:='%' || UPPER(tipo_pedido) || '%';
+    tp2:='%' || UPPER(tipo_plato) || '%';
     OPEN c1 FOR
         SELECT T.Sucursal, T.Plato, P.FOTO,T.DESCRIPCION, T.TIPO, "Fecha desde", "Fecha hasta", cantidad, demanda, T.PRECIO_UNITARIO
         FROM PLATO P join
@@ -24,22 +28,22 @@ BEGIN
                                 join PLATO_PEDIDO PP on P.ID = PP.ID_PEDIDO
                                 join PLATO P2 on PP.CODIGO_PLATO = P2.CODIGO
                                 join SUCURSAL S on P.ID_SUCURSAL = S.ID
-                       WHERE P.TIPO = tipo_pedido
+                       WHERE UPPER(P.TIPO) LIKE tp1
                          AND (P.FECHA_HORA BETWEEN fechas.FECHA_INICIO and fechas.FECHA_FIN)
-                         AND P2.CATEGORIA = tipo_plato
+                         AND UPPER(P2.CATEGORIA) LIKE tp2
                        GROUP BY S.ID, PP.CODIGO_PLATO) cant on cant.CODIGO_PLATO = PP.CODIGO_PLATO and cant.ID = S.ID
                  join (SELECT S.ID, SUM(PP.CANTIDAD) as total_platos
                        FROM PEDIDO P
                                 join PLATO_PEDIDO PP on P.ID = PP.ID_PEDIDO
                                 join PLATO P2 on PP.CODIGO_PLATO = P2.CODIGO
                                 join SUCURSAL S on P.ID_SUCURSAL = S.ID
-                       WHERE P.TIPO = tipo_pedido
+                       WHERE UPPER(P.TIPO) LIKE tp1
                          AND (P.FECHA_HORA BETWEEN fechas.FECHA_INICIO and fechas.FECHA_FIN)
-                         AND P2.CATEGORIA = tipo_plato
+                         AND UPPER(P2.CATEGORIA) LIKE tp2
                        GROUP BY S.ID) total on total.ID = S.ID
-        WHERE P.TIPO = tipo_pedido
+        WHERE UPPER(P.TIPO) LIKE tp1
           AND (P.FECHA_HORA BETWEEN fechas.FECHA_INICIO and fechas.FECHA_FIN)
-          AND P2.CATEGORIA = tipo_plato
+          AND UPPER(P2.CATEGORIA) LIKE tp2
           AND cant.cantidad > 0
         ORDER BY S.NOMBRE, demanda desc) T on P.NOMBRE=T.Plato;
 END;
@@ -57,7 +61,17 @@ CREATE OR REPLACE PROCEDURE REPORTE2(fecha_p DATE,c2 OUT sys_refcursor) is
 --3. Reporte de histórico de promociones
 CREATE OR REPLACE PROCEDURE REPORTE3(fecha_inicio DATE, fecha_fin DATE, precio_menor FLOAT,
                                      precio_mayor FLOAT, cursor OUT sys_refcursor) IS
+    p_menor FLOAT;
+    p_mayor FLOAT;
 BEGIN
+    p_menor:=precio_menor;
+    p_mayor:=precio_mayor;
+    if p_menor is null then
+        p_menor:=0;
+    end if;
+    if p_mayor is null then
+        p_mayor:=100000;
+    end if;
     OPEN cursor
         FOR SELECT promo.inicio_fin.FECHA_INICIO,                           --fecha inicio
                    promo.inicio_fin.FECHA_FIN,                              --fecha fin
@@ -72,8 +86,8 @@ BEGIN
             where ((promo.INICIO_FIN.FECHA_INICIO BETWEEN FECHA_INICIO AND FECHA_FIN) OR
                    (promo.INICIO_FIN.FECHA_FIN BETWEEN FECHA_INICIO AND FECHA_FIN)
                 OR (promo.INICIO_FIN.FECHA_INICIO <= fecha_inicio AND (promo.INICIO_FIN.FECHA_FIN >= fecha_fin OR promo.INICIO_FIN.FECHA_FIN IS NULL)))
-              and promo.precio_descuento >= precio_menor
-              and promo.precio_descuento <= precio_mayor;
+              and promo.precio_descuento >= p_menor
+              and promo.precio_descuento <= p_mayor;
 END;
 
 --4. Reporte de empleados del restaurante por sucursal y su rol
@@ -84,12 +98,6 @@ CREATE OR REPLACE procedure reporte4(sucursal SUCURSAL.nombre%type, fechas CALEN
 BEGIN
     S1:= '%' || UPPER(sucursal) || '%';
     R1:= '%' || UPPER(rol) || '%';
-    if sucursal IS NULL then
-        S1:='%';
-    end if;
-    if rol IS NULL then
-        R1:='%';
-    end if;
     OPEN c4 FOR
         SELECT S.NOMBRE as Sucursal,
                E.FOTO_CARNET,
