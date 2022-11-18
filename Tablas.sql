@@ -303,3 +303,4 @@ CREATE SEQUENCE pedido_seq;
 CREATE SEQUENCE empleado_seq;
 CREATE SEQUENCE rol_seq;
 CREATE SEQUENCE contrato_seq;
+CREATE SEQUENCE calificacion_seq;

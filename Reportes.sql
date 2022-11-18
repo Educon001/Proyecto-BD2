@@ -44,8 +44,8 @@ BEGIN
         WHERE UPPER(P.TIPO) LIKE tp1
           AND (P.FECHA_HORA BETWEEN fechas.FECHA_INICIO and fechas.FECHA_FIN)
           AND UPPER(P2.CATEGORIA) LIKE tp2
-          AND cant.cantidad > 0
-        ORDER BY S.NOMBRE, demanda desc) T on P.NOMBRE=T.Plato;
+          AND cant.cantidad > 0) T on P.NOMBRE=T.Plato
+        ORDER BY T.Sucursal, demanda desc;
 END;
 
 --2. Reporte de menú del día
