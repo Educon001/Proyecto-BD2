@@ -174,7 +174,7 @@ CREATE TABLE pedido
     id          NUMBER,
     tipo        VARCHAR2(8),
     fecha_hora  TIMESTAMP,
-    monto_total FLOAT CHECK ( monto_total > 0 ),
+    monto_total FLOAT CHECK ( monto_total >= 0 ),
     CONSTRAINT formato_tipo_pedido CHECK ( tipo = 'DELIVERY' OR tipo = 'PICK-UP' OR tipo = 'EN LOCAL'),
     CONSTRAINT pedido_sucursal_fk FOREIGN KEY (id_sucursal) REFERENCES sucursal (id),
     CONSTRAINT pedido_cliente_fk FOREIGN KEY (id_cliente) REFERENCES cliente (id),
@@ -269,7 +269,9 @@ CREATE TABLE orden_compra
 (
     id          NUMBER PRIMARY KEY,
     monto_total FLOAT,
-    completa    NUMBER CHECK ( completa in (0, 1))
+    id_sucursal NUMBER,
+    completa    NUMBER CHECK ( completa in (0, 1)),
+    CONSTRAINT orden_sucursal_fk FOREIGN KEY (id_sucursal) REFERENCES sucursal (id)
 );
 
 CREATE TABLE producto_orden
@@ -304,3 +306,4 @@ CREATE SEQUENCE empleado_seq;
 CREATE SEQUENCE rol_seq;
 CREATE SEQUENCE contrato_seq;
 CREATE SEQUENCE calificacion_seq;
+CREATE SEQUENCE orden_seq;
