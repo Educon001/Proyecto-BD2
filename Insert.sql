@@ -216,7 +216,4 @@ insert into plato_promocion values(4,7,1);
 insert into plato_promocion values(9,5,1);
 insert into plato_promocion values(10,5,1);
 
---Producto
-INSERT INTO PRODUCTO (ID, DESCRIPCION, UNIDAD_MEDIDA) VALUES (1, 'Papa', 'Kg');
-
 COMMIT;

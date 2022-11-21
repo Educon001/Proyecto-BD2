@@ -54,3 +54,13 @@ BEGIN
     SELECT NOMBRE INTO nomb_plato FROM PLATO WHERE CODIGO = COD_PLATO;
     RETURN nomb_plato;
 end;
+
+CREATE OR REPLACE FUNCTION nombre_producto(producto_id NUMBER) RETURN VARCHAR2 IS
+    nombre_producto VARCHAR2(100);
+BEGIN
+    SELECT DESCRIPCION
+    INTO nombre_producto
+    FROM PRODUCTO
+    WHERE ID=producto_id;
+    RETURN nombre_producto;
+end;

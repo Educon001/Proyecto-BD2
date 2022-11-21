@@ -27,7 +27,7 @@ CREATE TABLE proveedor_producto
 (
     rif_proveedor  VARCHAR2(10),
     id_producto    NUMBER,
-    disponibilidad NUMBER,
+    disponibilidad NUMBER CHECK ( disponibilidad in (0,1) ),
     precio         FLOAT CHECK ( precio > 0 ),
     CONSTRAINT proveedor_producto_pk PRIMARY KEY (rif_proveedor, id_producto),
     CONSTRAINT proveedor_producto_proveedor_fk FOREIGN KEY (rif_proveedor) REFERENCES proveedor (rif),
@@ -307,3 +307,5 @@ CREATE SEQUENCE rol_seq;
 CREATE SEQUENCE contrato_seq;
 CREATE SEQUENCE calificacion_seq;
 CREATE SEQUENCE orden_seq;
+CREATE SEQUENCE producto_seq;
+CREATE SEQUENCE egreso_seq;

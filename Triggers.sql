@@ -13,9 +13,6 @@ BEGIN
     update PEDIDO
     set MONTO_TOTAL = MONTO_TOTAL + monto_plato_iva
     where ID = :new.ID_PEDIDO;
-    DBMS_OUTPUT.PUT(nombre_plato(:new.CODIGO_PLATO) || ': $' || precio_unitario_plato(:new.CODIGO_PLATO) || ' x ' ||
-                    :new.CANTIDAD);
-    DBMS_OUTPUT.PUT_LINE(' = $' || monto_plato);
 end;
 
 CREATE OR REPLACE TRIGGER resta_inventario_plato
@@ -35,6 +32,48 @@ BEGIN
         LOOP
             UPDATE INVENTARIO
             SET CANTIDAD=CANTIDAD - prod.CANTIDAD
-            WHERE ID_PRODUCTO = prod.ID_PRODUCTO AND ID_SUCURSAL = sucursal_id;
+            WHERE ID_PRODUCTO = prod.ID_PRODUCTO
+              AND ID_SUCURSAL = sucursal_id;
         end loop;
+end;
+
+CREATE OR REPLACE TRIGGER insercion_producto_orden
+    AFTER INSERT
+    ON PRODUCTO_ORDEN
+    FOR EACH ROW
+DECLARE
+    monto_orden     FLOAT;
+    precio_producto FLOAT;
+BEGIN
+    SELECT PRECIO
+    INTO precio_producto
+    FROM PROVEEDOR_PRODUCTO
+    WHERE ID_PRODUCTO = :new.ID_PRODUCTO
+      AND RIF_PROVEEDOR = :new.RIF_PROVEEDOR;
+
+    monto_orden := ROUND(precio_producto * :new.cantidad, 2);
+    update ORDEN_COMPRA
+    set MONTO_TOTAL = MONTO_TOTAL + monto_orden
+    where ID = :new.ID_ORDEN;
+end;
+
+CREATE OR REPLACE TRIGGER orden_completada
+    AFTER UPDATE OF COMPLETA
+    ON ORDEN_COMPRA
+    FOR EACH ROW
+BEGIN
+    IF :new.COMPLETA = 1 THEN
+        INSERT INTO EGRESO (ID, FECHA, MOTIVO, MONTO, ID_SUCURSAL, ID_ORDEN)
+        VALUES (EGRESO_SEQ.nextval, CURRENT_DATE, 'Reposicón de inventario', :new.MONTO_TOTAL, :new.ID_SUCURSAL, :new.ID);
+        FOR prod IN (SELECT ID_PRODUCTO, CANTIDAD
+                     FROM PRODUCTO_ORDEN
+                     WHERE ID_ORDEN = :new.ID)
+            LOOP
+                UPDATE INVENTARIO
+                SET CANTIDAD=CANTIDAD + prod.CANTIDAD,
+                    FECHA_INVENTARIO=CURRENT_DATE
+                WHERE ID_PRODUCTO = prod.ID_PRODUCTO
+                  AND ID_SUCURSAL = :new.ID_SUCURSAL;
+            end loop;
+    end if;
 end;
