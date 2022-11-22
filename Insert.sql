@@ -37,8 +37,6 @@ VALUES (PLATO_SEQ.nextval, 'Brownie con helado', 'Postre', 'Brownie caliente con
 INSERT INTO plato (CODIGO, NOMBRE, CATEGORIA, DESCRIPCION, PRECIO_UNITARIO, FOTO, RECETA)
 VALUES (PLATO_SEQ.nextval, 'Banana split', 'Postre', 'Banana', 3, FILE_TO_BLOB('banana_split.jpg'), 'Cambur y helado');
 
-
-
 --SUCURSALES
 INSERT INTO SUCURSAL (ID, NOMBRE, ID_RESTAURANTE, DIRECCION, HORARIO)
 VALUES (1, 'Altamira', 1,
@@ -56,86 +54,303 @@ VALUES (3, 'Los Samanes', 1,
         DIRECCION(10.454732150512212, -66.85715963424968, 'F43V+R5V, Avenida 1, Caracas 1080, Miranda'),
         HORARIO(TO_DSINTERVAL('0 10:00:00'), TO_DSINTERVAL('0 22:00:00')));
 
+--CLIENTES
+INSERT INTO CLIENTE (ID, TELEFONO, DATOS, DIRECCION)
+VALUES (CLIENTE_SEQ.nextval,'4241927374',DATOS_BASICOS(1,'Jesús','Daniel','Velazquez','Fernández'),DIRECCION(10.436210191840155, -66.84365777624929,'Avenida Sur 11, Caracas 1083, Miranda, Venezuela'));
+INSERT INTO CLIENTE (ID, TELEFONO, DATOS, DIRECCION)
+VALUES (CLIENTE_SEQ.nextval,'4241837954',DATOS_BASICOS(2,'María','Alejandra','Farez','Suárez'),DIRECCION(10.482056, -66.860498,'EDIF. QUEIPA, Av. La Trinidad, Caracas 1080, Distrito Capital, Venezuela'));
+INSERT INTO CLIENTE (ID, TELEFONO, DATOS, DIRECCION)
+VALUES (CLIENTE_SEQ.nextval,'4249403571',DATOS_BASICOS(3,'José','Miguel','Cuesta','Rosa'),DIRECCION(10.43831118787361, -66.8913454072681,'El Rosal Edificio Cascadas, Avenida Alameda, Caracas, Distrito Capital, Venezuela'));
+INSERT INTO CLIENTE (ID, TELEFONO, DATOS, DIRECCION)
+VALUES (CLIENTE_SEQ.nextval,'4168902647',DATOS_BASICOS(4,'Manuel','Javier','Peña','Barreto'),DIRECCION(10.430839, -66.859916,'Calle Altagracia, Caracas 1080, Miranda, Venezuela'));
+INSERT INTO CLIENTE (ID, TELEFONO, DATOS, DIRECCION)
+VALUES (CLIENTE_SEQ.nextval,'4160986371',DATOS_BASICOS(5,'Angela','Estefania','Garriga','Lamura'),DIRECCION(10.430528232815599, -66.88609881890437,'Edificio CIMARU A, Residencias Cimaru A, Caracas 1080, Miranda, Venezuela'));
+INSERT INTO CLIENTE (ID, TELEFONO, DATOS, DIRECCION)
+VALUES (CLIENTE_SEQ.nextval,'4129183746',DATOS_BASICOS(6,'Orianna','Arianna','Venegas','González'),DIRECCION(10.469120767772775, -66.84033498247886,'Residencias Oasis, Av. Principal San Luis, Caracas 1061, Miranda, Venezuela'));
+INSERT INTO CLIENTE (ID, TELEFONO, DATOS, DIRECCION)
+VALUES (CLIENTE_SEQ.nextval,'4149204716',DATOS_BASICOS(7,'Gilberto','Gabriel','Casas','Palacios'),DIRECCION(10.469120767772775, -66.84033498247886,'F5J5+HVX, Caracas 1061, Miranda, Venezuela'));
+INSERT INTO CLIENTE (ID, TELEFONO, DATOS, DIRECCION)
+VALUES (CLIENTE_SEQ.nextval,'4149204245',DATOS_BASICOS(8,'Aaaron','Marco','Noguera','Álvarez'),DIRECCION(10.44015975562321, -66.83777463579197,'Av. El Paují, Caracas 1083, Miranda, Venezuela'));
+INSERT INTO CLIENTE (ID, TELEFONO, DATOS, DIRECCION)
+VALUES (CLIENTE_SEQ.nextval,'4169025212',DATOS_BASICOS(9,'Mario','Daniel','Gil','Andarcia'),DIRECCION(10.453453, -66.922653,'Calle La Floresta, Caracas 1090, Distrito Capital, Venezuela'));
+INSERT INTO CLIENTE (ID, TELEFONO, DATOS, DIRECCION)
+VALUES (CLIENTE_SEQ.nextval,'2128791273',DATOS_BASICOS(10,'Daniela','Fatima','Fernandes','Arteaga'),DIRECCION(10.48903742907594, -66.95562706971029,'Bella Vista, Caracas 1020, Capital District, Venezuela'));
+INSERT INTO CLIENTE (ID, TELEFONO, DATOS, DIRECCION)
+VALUES (CLIENTE_SEQ.nextval,'4129933442',DATOS_BASICOS(11,'Ludibia','María','Betancur','Tovar'),DIRECCION(10.471107,-66.875285,'Calle T, Caracas 1080, Distrito Capital, Venezuela'));
+INSERT INTO CLIENTE (ID, TELEFONO, DATOS, DIRECCION)
+VALUES (CLIENTE_SEQ.nextval,'2149933551',DATOS_BASICOS(12,'Armando','Manuel','Casas','Guaz'),DIRECCION(10.203077156338898, -71.31196219511452,'Campo Elías, Cd Ojeda 4019, Zulia, Venezuela'));
+INSERT INTO CLIENTE (ID, TELEFONO, DATOS, DIRECCION)
+VALUES (CLIENTE_SEQ.nextval,'2149933551',DATOS_BASICOS(13,'Mónica','Karina','Pérez','Cabello'),DIRECCION(10.343533171145806, -67.04071665277675,'C. Miquilén, Los Teques 1201, Miranda, Venezuela'));
+INSERT INTO CLIENTE (ID, TELEFONO, DATOS, DIRECCION)
+VALUES (CLIENTE_SEQ.nextval,'2149933551',DATOS_BASICOS(14,'Pedro','Rafael','Arteaga','Manfredonia'),DIRECCION(10.498768, -66.887164,'Av. Colón, Caracas 1050, Distrito Capital, Venezuela'));
+INSERT INTO CLIENTE (ID, TELEFONO, DATOS, DIRECCION)
+VALUES (CLIENTE_SEQ.nextval,'4143982736',DATOS_BASICOS(15,'Robert','Alfredo','Galarga','Hurtado'),DIRECCION(10.500139, -66.877966,'Av. Los Samanes, Caracas 1050, Distrito Capital, Venezuela'));
+
 --PEDIDOS
-INSERT INTO PEDIDO (ID_SUCURSAL,ID,TIPO,FECHA_HORA) VALUES (1,PEDIDO_SEQ.nextval,'EN LOCAL',SYSDATE);
-    INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (1,1,2);
-    INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (2,1,3);
-INSERT INTO PEDIDO (ID_SUCURSAL,ID,TIPO,FECHA_HORA) VALUES (1,PEDIDO_SEQ.nextval,'EN LOCAL',SYSDATE);
-    INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (1,2,3);
-    INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (4,2,1);
-INSERT INTO PEDIDO (ID_SUCURSAL,ID,TIPO,FECHA_HORA) VALUES (1,PEDIDO_SEQ.nextval,'EN LOCAL',SYSDATE);
-    INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (3,3,3);
-    INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (5,3,2);
-INSERT INTO PEDIDO (ID_SUCURSAL,ID,TIPO,FECHA_HORA) VALUES (1,PEDIDO_SEQ.nextval,'EN LOCAL',SYSDATE);
-    INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (2,4,3);
-    INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (4,4,2);
-INSERT INTO PEDIDO (ID_SUCURSAL,ID,TIPO,FECHA_HORA) VALUES (1, PEDIDO_SEQ.nextval,'EN LOCAL',SYSDATE);
-    INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (5,5,2);
-    INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (6,5,1);
-    INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (7,5,1);
+INSERT INTO PEDIDO (ID_SUCURSAL,ID_CLIENTE,ID,TIPO,FECHA_HORA,MONTO_TOTAL) VALUES (1,1,PEDIDO_SEQ.nextval,'EN LOCAL',SYSDATE,0);
+    INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (1,PEDIDO_SEQ.currval,2);
+    INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (2,PEDIDO_SEQ.currval,3);
+INSERT INTO PEDIDO (ID_SUCURSAL,ID_CLIENTE,ID,TIPO,FECHA_HORA,MONTO_TOTAL) VALUES (1,2,PEDIDO_SEQ.nextval,'EN LOCAL',SYSDATE,0);
+    INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (1,PEDIDO_SEQ.currval,3);
+    INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (4,PEDIDO_SEQ.currval,1);
+INSERT INTO PEDIDO (ID_SUCURSAL,ID_CLIENTE,ID,TIPO,FECHA_HORA,MONTO_TOTAL) VALUES (1,3,PEDIDO_SEQ.nextval,'EN LOCAL',SYSDATE,0);
+    INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (3,PEDIDO_SEQ.currval,3);
+    INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (5,PEDIDO_SEQ.currval,2);
+INSERT INTO PEDIDO (ID_SUCURSAL,ID_CLIENTE,ID,TIPO,FECHA_HORA,MONTO_TOTAL) VALUES (1,4,PEDIDO_SEQ.nextval,'EN LOCAL',SYSDATE,0);
+    INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (2,PEDIDO_SEQ.currval,3);
+    INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (4,PEDIDO_SEQ.currval,2);
+INSERT INTO PEDIDO (ID_SUCURSAL,ID_CLIENTE,ID,TIPO,FECHA_HORA,MONTO_TOTAL) VALUES (1,5,PEDIDO_SEQ.nextval,'EN LOCAL',SYSDATE,0);
+    INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (5,PEDIDO_SEQ.currval,2);
+    INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (6,PEDIDO_SEQ.currval,1);
+    INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (7,PEDIDO_SEQ.currval,1);
 
 --Pedidos sucursal 2
-INSERT INTO PEDIDO (ID_SUCURSAL,ID,TIPO,FECHA_HORA) VALUES (2,PEDIDO_SEQ.nextval,'EN LOCAL',SYSDATE);
-    INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (3,21,2);
-    INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (2,21,3);
-    INSERT INTO CALIFICACION (ID_PEDIDO, CODIGO, PUNTAJE, OBSERVACIONES) VALUES (21, CALIFICACION_SEQ.nextval, 1, 'Pésimo servicio');
-
-INSERT INTO PEDIDO (ID_SUCURSAL,ID,TIPO,FECHA_HORA) VALUES (2,PEDIDO_SEQ.nextval,'DELIVERY',SYSDATE);
-    INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (3,22,3);
-    INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (4,22,1);
-    INSERT INTO CALIFICACION (ID_PEDIDO, CODIGO, PUNTAJE, OBSERVACIONES) VALUES (22, CALIFICACION_SEQ.nextval, 4, 'Buen servicio');
-
-INSERT INTO PEDIDO (ID_SUCURSAL,ID,TIPO,FECHA_HORA) VALUES (2,PEDIDO_SEQ.nextval,'EN LOCAL',SYSDATE);
-    INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (4,23,3);
-    INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (5,23,2);
-    INSERT INTO CALIFICACION (ID_PEDIDO, CODIGO, PUNTAJE, OBSERVACIONES) VALUES (23, CALIFICACION_SEQ.nextval, 2, 'Mediocre servicio');
-
-INSERT INTO PEDIDO (ID_SUCURSAL,ID,TIPO,FECHA_HORA) VALUES (2,PEDIDO_SEQ.nextval,'PICK-UP',SYSDATE);
-    INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (8,24,3);
-    INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (4,24,2);
-    INSERT INTO CALIFICACION (ID_PEDIDO, CODIGO, PUNTAJE, OBSERVACIONES) VALUES (24, CALIFICACION_SEQ.nextval, 5, 'Muy sabrosa la comida');
-
-INSERT INTO PEDIDO (ID_SUCURSAL,ID,TIPO,FECHA_HORA) VALUES (2, PEDIDO_SEQ.nextval,'EN LOCAL',SYSDATE);
-    INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (5,25,2);
-    INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (9,25,1);
-    INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (7,25,1);
-    INSERT INTO CALIFICACION (ID_PEDIDO, CODIGO, PUNTAJE, OBSERVACIONES) VALUES (25, CALIFICACION_SEQ.nextval, 2, 'La ensalada no me gustó');
+INSERT INTO PEDIDO (ID_SUCURSAL,ID_CLIENTE,ID,TIPO,FECHA_HORA,MONTO_TOTAL) VALUES (2,6,PEDIDO_SEQ.nextval,'EN LOCAL',SYSDATE,0);
+    INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (3,PEDIDO_SEQ.currval,2);
+    INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (2,PEDIDO_SEQ.currval,3);
+INSERT INTO PEDIDO (ID_SUCURSAL,ID_CLIENTE,ID,TIPO,FECHA_HORA,MONTO_TOTAL) VALUES (2,7,PEDIDO_SEQ.nextval,'DELIVERY',SYSDATE,0);
+    INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (3,PEDIDO_SEQ.currval,3);
+    INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (4,PEDIDO_SEQ.currval,1);
+INSERT INTO PEDIDO (ID_SUCURSAL,ID_CLIENTE,ID,TIPO,FECHA_HORA,MONTO_TOTAL) VALUES (2,8,PEDIDO_SEQ.nextval,'EN LOCAL',SYSDATE,0);
+    INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (4,PEDIDO_SEQ.currval,3);
+    INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (5,PEDIDO_SEQ.currval,2);
+INSERT INTO PEDIDO (ID_SUCURSAL,ID_CLIENTE,ID,TIPO,FECHA_HORA,MONTO_TOTAL) VALUES (2,9,PEDIDO_SEQ.nextval,'PICK-UP',SYSDATE,0);
+    INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (8,PEDIDO_SEQ.currval,3);
+    INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (4,PEDIDO_SEQ.currval,2);
+INSERT INTO PEDIDO (ID_SUCURSAL,ID_CLIENTE,ID,TIPO,FECHA_HORA,MONTO_TOTAL) VALUES (2,10,PEDIDO_SEQ.nextval,'EN LOCAL',SYSDATE,0);
+    INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (5,PEDIDO_SEQ.currval,2);
+    INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (9,PEDIDO_SEQ.currval,1);
+    INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (7,PEDIDO_SEQ.currval,1);
 
 --PEDIDOS SUCURSAL 3
-INSERT INTO PEDIDO (ID_SUCURSAL,ID,TIPO,FECHA_HORA) VALUES (3,PEDIDO_SEQ.nextval,'EN LOCAL',SYSDATE);
-    INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (3,26,2);
-    INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (2,26,3);
-    INSERT INTO CALIFICACION (ID_PEDIDO, CODIGO, PUNTAJE, OBSERVACIONES) VALUES (26, CALIFICACION_SEQ.nextval, 5, 'Muy sabrosa la comida');
+INSERT INTO PEDIDO (ID_SUCURSAL,ID_CLIENTE,ID,TIPO,FECHA_HORA,MONTO_TOTAL) VALUES (3,11,PEDIDO_SEQ.nextval,'EN LOCAL',SYSDATE,0);
+    INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (3,PEDIDO_SEQ.currval,2);
+    INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (2,PEDIDO_SEQ.currval,3);
+INSERT INTO PEDIDO (ID_SUCURSAL,ID_CLIENTE,ID,TIPO,FECHA_HORA,MONTO_TOTAL) VALUES (3,12,PEDIDO_SEQ.nextval,'DELIVERY',SYSDATE,0);
+    INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (3,PEDIDO_SEQ.currval,3);
+    INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (4,PEDIDO_SEQ.currval,1);
+INSERT INTO PEDIDO (ID_SUCURSAL,ID_CLIENTE,ID,TIPO,FECHA_HORA,MONTO_TOTAL) VALUES (3,13,PEDIDO_SEQ.nextval,'EN LOCAL',SYSDATE,0);
+    INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (4,PEDIDO_SEQ.currval,3);
+    INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (5,PEDIDO_SEQ.currval,2);
+INSERT INTO PEDIDO (ID_SUCURSAL,ID_CLIENTE,ID,TIPO,FECHA_HORA,MONTO_TOTAL) VALUES (3,14,PEDIDO_SEQ.nextval,'PICK-UP',SYSDATE,0);
+    INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (8,PEDIDO_SEQ.currval,3);
+    INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (4,PEDIDO_SEQ.currval,2);
+INSERT INTO PEDIDO (ID_SUCURSAL,ID_CLIENTE,ID,TIPO,FECHA_HORA,MONTO_TOTAL) VALUES (3,15,PEDIDO_SEQ.nextval,'EN LOCAL',SYSDATE,0);
+    INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (5,PEDIDO_SEQ.currval,2);
+    INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (9,PEDIDO_SEQ.currval,1);
+    INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (7,PEDIDO_SEQ.currval,1);
 
-INSERT INTO PEDIDO (ID_SUCURSAL,ID,TIPO,FECHA_HORA) VALUES (3,PEDIDO_SEQ.nextval,'DELIVERY',SYSDATE);
-    INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (3,27,3);
-    INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (4,27,1);
-    INSERT INTO CALIFICACION (ID_PEDIDO, CODIGO, PUNTAJE, OBSERVACIONES) VALUES (27, CALIFICACION_SEQ.nextval, 2, 'La pasta estaba medio cruda');
+--PAGOS
+DECLARE
+BEGIN
+    FOR I IN (SELECT * FROM PEDIDO)
+    LOOP
+        INSERT INTO PAGO_PEDIDO (ID, ID_PEDIDO, ID_CLIENTE, ID_SUCURSAL, MONTO, TIPO_PAGO)
+        VALUES (PAGO_SEQ.nextval,I.ID,I.ID_CLIENTE,I.ID_SUCURSAL,I.MONTO_TOTAL,'POS');
+    end loop;
+end;
 
-INSERT INTO PEDIDO (ID_SUCURSAL,ID,TIPO,FECHA_HORA) VALUES (3,PEDIDO_SEQ.nextval,'EN LOCAL',SYSDATE);
-    INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (4,28,3);
-    INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (5,28,2);
-    INSERT INTO CALIFICACION (ID_PEDIDO, CODIGO, PUNTAJE, OBSERVACIONES) VALUES (28, CALIFICACION_SEQ.nextval, 1, 'Pésimo servicio');
+--PRODUCTOS
+-- INGREDIENTES PARA PIZZA
+INSERT INTO PRODUCTO (ID, DESCRIPCION, UNIDAD_MEDIDA)
+VALUES (PRODUCTO_SEQ.nextval,'Masa','Kg');
+INSERT INTO PRODUCTO (ID, DESCRIPCION, UNIDAD_MEDIDA)
+VALUES (PRODUCTO_SEQ.nextval,'Tomate','Kg');
+INSERT INTO PRODUCTO (ID, DESCRIPCION, UNIDAD_MEDIDA)
+VALUES (PRODUCTO_SEQ.nextval,'Queso mozarella','Kg');
 
-INSERT INTO PEDIDO (ID_SUCURSAL,ID,TIPO,FECHA_HORA) VALUES (3,PEDIDO_SEQ.nextval,'PICK-UP',SYSDATE);
-    INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (8,29,3);
-    INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (4,29,2);
-    INSERT INTO CALIFICACION (ID_PEDIDO, CODIGO, PUNTAJE, OBSERVACIONES) VALUES (29, CALIFICACION_SEQ.nextval, 4, 'Buen servicio');
+-- INGREDIENTES PARA HAMBURGUESA
+INSERT INTO PRODUCTO (ID, DESCRIPCION, UNIDAD_MEDIDA)
+VALUES (PRODUCTO_SEQ.nextval,'Pan','U');
+INSERT INTO PRODUCTO (ID, DESCRIPCION, UNIDAD_MEDIDA)
+VALUES (PRODUCTO_SEQ.nextval,'Carne molida','Kg');
+INSERT INTO PRODUCTO (ID, DESCRIPCION, UNIDAD_MEDIDA)
+VALUES (PRODUCTO_SEQ.nextval,'Queso americano','Kg');
+INSERT INTO PRODUCTO (ID, DESCRIPCION, UNIDAD_MEDIDA)
+VALUES (PRODUCTO_SEQ.nextval,'Lechuga','Kg');
+INSERT INTO PRODUCTO (ID, DESCRIPCION, UNIDAD_MEDIDA)
+VALUES (PRODUCTO_SEQ.nextval,'Salsa','L');
 
-INSERT INTO PEDIDO (ID_SUCURSAL,ID,TIPO,FECHA_HORA) VALUES (3, PEDIDO_SEQ.nextval,'EN LOCAL',SYSDATE);
-    INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (5,30,2);
-    INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (9,30,1);
-    INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (7,30,1);
-    INSERT INTO CALIFICACION (ID_PEDIDO, CODIGO, PUNTAJE, OBSERVACIONES) VALUES (30, CALIFICACION_SEQ.nextval, 3, 'Margarita muy fuerte');
+-- INGREDIENTES PASTA
+INSERT INTO PRODUCTO (ID, DESCRIPCION, UNIDAD_MEDIDA)
+VALUES (PRODUCTO_SEQ.nextval,'Spaghetti','Kg');
+
+-- INGREDIENTES PASTA
+INSERT INTO PRODUCTO (ID, DESCRIPCION, UNIDAD_MEDIDA)
+VALUES (PRODUCTO_SEQ.nextval,'Jamon','Kg');
+
+-- BEBIDAS
+INSERT INTO PRODUCTO (ID, DESCRIPCION, UNIDAD_MEDIDA)
+VALUES (PRODUCTO_SEQ.nextval,'Agua minalba 600ml','U');
+
+INSERT INTO PRODUCTO (ID, DESCRIPCION, UNIDAD_MEDIDA)
+VALUES (PRODUCTO_SEQ.nextval,'Coca-Cola Lata 355ml','U');
+
+INSERT INTO PRODUCTO (ID, DESCRIPCION, UNIDAD_MEDIDA)
+VALUES (PRODUCTO_SEQ.nextval,'Cerveza Polar botella 222ml','U');
+
+INSERT INTO PRODUCTO (ID, DESCRIPCION, UNIDAD_MEDIDA)
+VALUES (PRODUCTO_SEQ.nextval,'Margarita','U');
+
+INSERT INTO PRODUCTO (ID, DESCRIPCION, UNIDAD_MEDIDA)
+VALUES (PRODUCTO_SEQ.nextval,'Fresa','Kg');
+
+-- POSTRES
+-- TRES LECHES
+INSERT INTO PRODUCTO (ID, DESCRIPCION, UNIDAD_MEDIDA)
+VALUES (PRODUCTO_SEQ.nextval,'Leche condensada','L');
+INSERT INTO PRODUCTO (ID, DESCRIPCION, UNIDAD_MEDIDA)
+VALUES (PRODUCTO_SEQ.nextval,'Leche entera','L');
+INSERT INTO PRODUCTO (ID, DESCRIPCION, UNIDAD_MEDIDA)
+VALUES (PRODUCTO_SEQ.nextval,'Leche evaporada','L');
+INSERT INTO PRODUCTO (ID, DESCRIPCION, UNIDAD_MEDIDA)
+VALUES (PRODUCTO_SEQ.nextval,'Huevo','U');
+-- Helado de mantecado
+INSERT INTO PRODUCTO (ID, DESCRIPCION, UNIDAD_MEDIDA)
+VALUES (PRODUCTO_SEQ.nextval,'Helado mantecado','L');
+-- Marquesa de chocolate
+INSERT INTO PRODUCTO (ID, DESCRIPCION, UNIDAD_MEDIDA)
+VALUES (PRODUCTO_SEQ.nextval,'Mantequilla','Kg');
+INSERT INTO PRODUCTO (ID, DESCRIPCION, UNIDAD_MEDIDA)
+VALUES (PRODUCTO_SEQ.nextval,'Chocolate','Kg');
+
+INSERT INTO PRODUCTO (ID, DESCRIPCION, UNIDAD_MEDIDA)
+VALUES (PRODUCTO_SEQ.nextval,'Banana','Kg');
+
+INSERT INTO PRODUCTO (ID, DESCRIPCION, UNIDAD_MEDIDA)
+VALUES (PRODUCTO_SEQ.nextval,'Pasta lasaña','Kg');
+
+INSERT INTO PRODUCTO (ID, DESCRIPCION, UNIDAD_MEDIDA)
+VALUES (PRODUCTO_SEQ.nextval,'Harina','Kg');
+
+-- PLATO_PRODUCTO
+-- PIZZA
+--MASA
+INSERT INTO PLATO_PRODUCTO (CODIGO_PLATO, ID_PRODUCTO, CANTIDAD)
+VALUES (1,1,0.25);
+-- TOMATE
+INSERT INTO PLATO_PRODUCTO (CODIGO_PLATO, ID_PRODUCTO, CANTIDAD)
+VALUES (1,2,0.25);
+-- QUESO MOZARELLA
+INSERT INTO PLATO_PRODUCTO (CODIGO_PLATO, ID_PRODUCTO, CANTIDAD)
+VALUES (1,3,0.25);
+
+-- HAMBURGUESA
+-- Pan
+INSERT INTO PLATO_PRODUCTO (CODIGO_PLATO, ID_PRODUCTO, CANTIDAD)
+VALUES (2,4,1);
+-- TOMATE
+INSERT INTO PLATO_PRODUCTO (CODIGO_PLATO, ID_PRODUCTO, CANTIDAD)
+VALUES (2,2,0.08);
+-- LECHUGA
+INSERT INTO PLATO_PRODUCTO (CODIGO_PLATO, ID_PRODUCTO, CANTIDAD)
+VALUES (2,7,0.08);
+-- QUESO AMERICANO
+INSERT INTO PLATO_PRODUCTO (CODIGO_PLATO, ID_PRODUCTO, CANTIDAD)
+VALUES (2,6,0.1);
+-- SALSA
+INSERT INTO PLATO_PRODUCTO (CODIGO_PLATO, ID_PRODUCTO, CANTIDAD)
+VALUES (2,8,0.05);
+-- CARNE MOLIDA
+INSERT INTO PLATO_PRODUCTO (CODIGO_PLATO, ID_PRODUCTO, CANTIDAD)
+VALUES (2,5,0.25);
+
+-- PASTA
+-- SPAGHETTI
+INSERT INTO PLATO_PRODUCTO (CODIGO_PLATO, ID_PRODUCTO, CANTIDAD)
+VALUES (3,9,0.15);
+INSERT INTO PLATO_PRODUCTO (CODIGO_PLATO, ID_PRODUCTO, CANTIDAD)
+VALUES (3,5,0.2);
+
+-- PASTICHO
+INSERT INTO PLATO_PRODUCTO (CODIGO_PLATO, ID_PRODUCTO, CANTIDAD)
+VALUES (4,24,0.2);
+-- TOMATE
+INSERT INTO PLATO_PRODUCTO (CODIGO_PLATO, ID_PRODUCTO, CANTIDAD)
+VALUES (4,2,0.2);
+-- LECHE
+INSERT INTO PLATO_PRODUCTO (CODIGO_PLATO, ID_PRODUCTO, CANTIDAD)
+VALUES (4,17,0.1);
+-- CARNE
+INSERT INTO PLATO_PRODUCTO (CODIGO_PLATO, ID_PRODUCTO, CANTIDAD)
+VALUES (4,5,0.15);
 
 
+-- ENSALADA
+-- TOMATE
+INSERT INTO PLATO_PRODUCTO (CODIGO_PLATO, ID_PRODUCTO, CANTIDAD)
+VALUES (5,2,0.3);
+-- LECHUGA
+INSERT INTO PLATO_PRODUCTO (CODIGO_PLATO, ID_PRODUCTO, CANTIDAD)
+VALUES (5,7,0.3);
+-- QUESO MOZARELLA
+INSERT INTO PLATO_PRODUCTO (CODIGO_PLATO, ID_PRODUCTO, CANTIDAD)
+VALUES (5,3,0.3);
 
-INSERT INTO PEDIDO (id, fecha_hora) VALUES (100,to_date('15/11/2022 9:00:00', 'dd/mm/yyyy hh:mi:ss'));
-INSERT INTO PEDIDO (id, fecha_hora) VALUES (101,to_date('15/11/2022 9:30:00', 'dd/mm/yyyy hh:mi:ss'));
-INSERT INTO PEDIDO (id, fecha_hora) VALUES (102,to_date('15/11/2022 10:00:00', 'dd/mm/yyyy hh:mi:ss'));
-INSERT INTO PEDIDO (id, fecha_hora) VALUES (103,to_date('15/11/2022 10:30:00', 'dd/mm/yyyy hh:mi:ss'));
-INSERT INTO PEDIDO (id, fecha_hora) VALUES (104,to_date('15/11/2022 11:00:00', 'dd/mm/yyyy hh:mi:ss'));
-INSERT INTO PEDIDO (id, fecha_hora) VALUES (105,to_date('15/11/2022 2:00:00', 'dd/mm/yyyy hh:mi:ss'));
+-- BEBIDAS
+-- Agua
+INSERT INTO PLATO_PRODUCTO (CODIGO_PLATO, ID_PRODUCTO, CANTIDAD)
+VALUES (6,11,1);
+-- Coca-Cola
+INSERT INTO PLATO_PRODUCTO (CODIGO_PLATO, ID_PRODUCTO, CANTIDAD)
+VALUES (7,12,1);
+-- Cerveza Polar
+INSERT INTO PLATO_PRODUCTO (CODIGO_PLATO, ID_PRODUCTO, CANTIDAD)
+VALUES (8,13,1);
+-- Margarita
+INSERT INTO PLATO_PRODUCTO (CODIGO_PLATO, ID_PRODUCTO, CANTIDAD)
+VALUES (9,14,1);
+-- Jugo de fresa
+INSERT INTO PLATO_PRODUCTO (CODIGO_PLATO, ID_PRODUCTO, CANTIDAD)
+VALUES (10,15,0.1);
+
+
+-- POSTRES
+-- TRES LECHES
+INSERT INTO PLATO_PRODUCTO (CODIGO_PLATO, ID_PRODUCTO, CANTIDAD)
+VALUES (11,17,1);
+INSERT INTO PLATO_PRODUCTO (CODIGO_PLATO, ID_PRODUCTO, CANTIDAD)
+VALUES (11,18,1);
+INSERT INTO PLATO_PRODUCTO (CODIGO_PLATO, ID_PRODUCTO, CANTIDAD)
+VALUES (11,19,2);
+INSERT INTO PLATO_PRODUCTO (CODIGO_PLATO, ID_PRODUCTO, CANTIDAD)
+VALUES (11,16,0.25);
+
+-- Helado de mantecado
+INSERT INTO PLATO_PRODUCTO (CODIGO_PLATO, ID_PRODUCTO, CANTIDAD)
+VALUES (12,20,0.25);
+
+-- MARQUESA DE CHOCOLATE
+INSERT INTO PLATO_PRODUCTO (CODIGO_PLATO, ID_PRODUCTO, CANTIDAD)
+VALUES (13,18,0.01);
+INSERT INTO PLATO_PRODUCTO (CODIGO_PLATO, ID_PRODUCTO, CANTIDAD)
+VALUES (13,19,1);
+INSERT INTO PLATO_PRODUCTO (CODIGO_PLATO, ID_PRODUCTO, CANTIDAD)
+VALUES (13,21,0.25);
+INSERT INTO PLATO_PRODUCTO (CODIGO_PLATO, ID_PRODUCTO, CANTIDAD)
+VALUES (13,22,0.2);
+
+-- BROWNIE
+INSERT INTO PLATO_PRODUCTO (CODIGO_PLATO, ID_PRODUCTO, CANTIDAD)
+VALUES (14,18,0.01);
+INSERT INTO PLATO_PRODUCTO (CODIGO_PLATO, ID_PRODUCTO, CANTIDAD)
+VALUES (14,19,1);
+INSERT INTO PLATO_PRODUCTO (CODIGO_PLATO, ID_PRODUCTO, CANTIDAD)
+VALUES (14,21,0.25);
+INSERT INTO PLATO_PRODUCTO (CODIGO_PLATO, ID_PRODUCTO, CANTIDAD)
+VALUES (14,22,0.2);
+INSERT INTO PLATO_PRODUCTO (CODIGO_PLATO, ID_PRODUCTO, CANTIDAD)
+VALUES (14,25,0.2);
+INSERT INTO PLATO_PRODUCTO (CODIGO_PLATO, ID_PRODUCTO, CANTIDAD)
+VALUES (14,20,0.25);
+
+-- BANANA SPLIT
+INSERT INTO PLATO_PRODUCTO (CODIGO_PLATO, ID_PRODUCTO, CANTIDAD)
+VALUES (15,23,0.2);
+INSERT INTO PLATO_PRODUCTO (CODIGO_PLATO, ID_PRODUCTO, CANTIDAD)
+VALUES (15,20,0.25);
+
+
 
 --EMPLEADOS
 INSERT INTO EMPLEADO (ID, FOTO_CARNET, FECHA_NACIMIENTO, SEXO, DATOS)
@@ -184,27 +399,126 @@ INSERT INTO EMPLEADO (ID, FOTO_CARNET, FECHA_NACIMIENTO, SEXO, DATOS)
 VALUES (EMPLEADO_SEQ.nextval, FILE_TO_BLOB('Dwight.jpg'), '20-jan-1970', 'M',
         DATOS_BASICOS(DATOS_BASICOS.VALIDARCI(9230142), 'Dwight', NULL, 'Schrute', NULL));
 
+--INVENTARIO
+DECLARE
+    cap NUMBER;
+    porcentaje_random NUMBER;
+begin
+    FOR I IN(SELECT *
+             FROM PRODUCTO)
+    LOOP
+
+        SELECT MAX(CANTIDAD)*20
+        INTO cap
+        FROM PLATO_PRODUCTO PP, PRODUCTO PR, PLATO PL
+        WHERE PP.id_producto=PR.ID AND PP.CODIGO_PLATO=PL.CODIGO AND PR.ID = I.ID;
+
+        FOR J IN (SELECT ID FROM SUCURSAL)
+        LOOP
+            SELECT ROUND(DBMS_RANDOM.VALUE(0,0.5),2) INTO porcentaje_random FROM DUAL;
+            INSERT INTO INVENTARIO (ID_PRODUCTO,ID_SUCURSAL,FECHA_INVENTARIO,CAPACIDAD_MAXIMA,CANTIDAD) VALUES
+            (I.ID,J.ID,CURRENT_DATE,cap,cap*porcentaje_random);
+        END LOOP;
+    END LOOP;
+end;
+
+--MESAS
+DECLARE
+    numero_de_mesas NUMBER;
+    nmesa NUMBER;
+    cap NUMBER;
+BEGIN
+    FOR I IN (SELECT ID
+              FROM SUCURSAL)
+    LOOP
+        SELECT ROUND(DBMS_RANDOM.VALUE(5,20)) INTO numero_de_mesas FROM DUAL;
+        nmesa := 1;
+        WHILE numero_de_mesas != 0
+        LOOP
+            SELECT ROUND(DBMS_RANDOM.VALUE(1,12)) INTO cap FROM DUAL;
+            INSERT INTO MESA (ID_SUCURSAL, NUM_MESA, CAPACIDAD, DISPONIBLE)
+            VALUES (I.ID,nmesa,cap,1);
+            nmesa:=nmesa+1;
+            numero_de_mesas := numero_de_mesas - 1;
+        end loop;
+
+    end loop;
+END;
+
+/*
+insert into promocion values(1,1,'2x1',CALENDARIO(to_date('2022-11-09','yyyy-mm-dd'),to_date('2022-11-12','yyyy-mm-dd')),0.5,'DESCUENTO',10);
+insert into promocion values(2,2,'Postre a 2$',CALENDARIO(to_date('2022-11-09','yyyy-mm-dd'),to_date('2022-11-15','yyyy-mm-dd')),2,'COMBO',10);
+insert into promocion values(3,3,'Postre a 1$',CALENDARIO(to_date('2022-11-01','yyyy-mm-dd'),to_date('2022-11-07','yyyy-mm-dd')),1,'COMBO',10);
+insert into promocion values(1,4,'Bebida a 1$',CALENDARIO(to_date('2022-11-01','yyyy-mm-dd'),to_date('2022-11-18','yyyy-mm-dd')),1,'COMBO',10);
+insert into promocion values(2,5,'Bebida a 0.5$',CALENDARIO(to_date('2022-10-01','yyyy-mm-dd'),to_date('2022-11-01','yyyy-mm-dd')),1,'COMBO',10);
+insert into promocion values(3,6,'Plato principal a 5$',CALENDARIO(to_date('2022-10-01','yyyy-mm-dd'),to_date('2022-10-10','yyyy-mm-dd')),5,'COMBO',10);
+insert into promocion values(1,7,'Descuento de 30%',CALENDARIO(to_date('2022-11-01','yyyy-mm-dd'),to_date('2022-12-01','yyyy-mm-dd')),0.30,'DESCUENTO',10);
+insert into promocion values(2,8,'Descuento de 10%',CALENDARIO(to_date('2022-10-30','yyyy-mm-dd'),to_date('2022-11-22','yyyy-mm-dd')),0.10,'DESCUENTO',10);
+insert into promocion values(3,9,'Descuento de 15%',CALENDARIO(to_date('2022-11-03','yyyy-mm-dd'),to_date('2022-12-03','yyyy-mm-dd')),0.15,'DESCUENTO',10);
+insert into promocion values(1,10,'Descuento de 50%',CALENDARIO(to_date('2022-11-20','yyyy-mm-dd'),to_date('2022-11-25','yyyy-mm-dd')),0.50,'DESCUENTO',10);
+insert into promocion values(2,11,'Descuento de 5%',CALENDARIO(to_date('2022-11-01','yyyy-mm-dd'),to_date('2022-12-01','yyyy-mm-dd')),0.05,'DESCUENTO',10);
+insert into promocion values(3,12,'Descuento de 20%',CALENDARIO(to_date('2022-11-20','yyyy-mm-dd'),to_date('2022-11-30','yyyy-mm-dd')),0.20,'DESCUENTO',10);
+insert into promocion values(1,13,'Descuento de 20%',CALENDARIO(to_date('2022-11-20','yyyy-mm-dd'),to_date('2022-11-30','yyyy-mm-dd')),0.20,'DESCUENTO',10);
+insert into promocion values(2,14,'Descuento de 20%',CALENDARIO(to_date('2022-11-20','yyyy-mm-dd'),to_date('2022-11-30','yyyy-mm-dd')),0.20,'DESCUENTO',10);
+insert into promocion values(3,15,'Descuento de 20%',CALENDARIO(to_date('2022-11-20','yyyy-mm-dd'),to_date('2022-11-30','yyyy-mm-dd')),0.20,'DESCUENTO',10);
+
+--PLATO_PROMO
+--BEBIDAS
+insert into plato_promocion values(7,6,10);
+insert into plato_promocion values(9,6,10);
+insert into plato_promocion values(10,6,10);
+insert into plato_promocion values(9,5,10);
+insert into plato_promocion values(10,5,10);
+--POSTRES
+insert into plato_promocion values(14,3,10);
+insert into plato_promocion values(13,3,10);
+insert into plato_promocion values(15,3,10);
+--PLATO PRINCIPAL
+insert into plato_promocion values(1,7,10);
+insert into plato_promocion values(2,7,10);
+insert into plato_promocion values(4,7,10);
+insert into plato_promocion values(1,11,10);
+insert into plato_promocion values(3,10,10);
+insert into plato_promocion values(5,15,10);
+insert into plato_promocion values(2,12,10);
+*/
+
 --ROLES
-INSERT INTO ROL (ID, NOMBRE, DESCRIPCION) VALUES (ROL_SEQ.nextval, 'Cocinero', 'Cocinar');
-INSERT INTO ROL (ID, NOMBRE, DESCRIPCION) VALUES (ROL_SEQ.nextval, 'Asistente de cocina', 'Asistir en la cocina');
-INSERT INTO ROL (ID, NOMBRE, DESCRIPCION) VALUES (ROL_SEQ.nextval, 'Abogado', 'Representar a la empresa en problemas legales');
+INSERT INTO ROL (ID, NOMBRE, DESCRIPCION) VALUES (ROL_SEQ.nextval, 'Cocinero', 'Se encarga de preparar los platos');
+INSERT INTO ROL (ID, NOMBRE, DESCRIPCION) VALUES (ROL_SEQ.nextval, 'Asistente de cocina', 'Ayuda al cocinero a preparar los platos');
+INSERT INTO ROL (ID, NOMBRE, DESCRIPCION) VALUES (ROL_SEQ.nextval, 'Gerente', 'Administrar la sucursal');
+insert into rol values(rol_seq.nextval,'Mesero','Atiende al cliente y facilita el servicio al mismo');
+insert into rol values(rol_seq.nextval,'Recepcionista','Atiende al cliente al entrar y le asigna una mesa');
+insert into rol values(rol_seq.nextval,'Parquero','Atiende al cliente al llegar al local y se encarga de estacionar sus carros');
+insert into rol values(rol_seq.nextval,'Vigilante','Se encarga de vigilar los carros de los clientes');
+insert into rol values(rol_seq.nextval,'Guardia','Se encarga de la seguridad dentro y fuera del local');
+insert into rol values(rol_seq.nextval,'Manager','Se encarga de manejar las redes sociales del local');
+insert into rol values(rol_seq.nextval,'Servicio al cliente','Coordina pedidos de tipo pick-up y delivery con el cliente');
+insert into rol values(rol_seq.nextval,'Delivery','Se encarga de trasladar los pedidos desde el local hasta la dirección del cliente');
+insert into rol values(rol_seq.nextval,'Pick-up','Se encarga de entregar los pedidos hechos por pick-up en el local');
+insert into rol values(rol_seq.nextval,'Lava-platos','Se encarga de la limpieza e higiene de los utencilios de cocina');insert into rol values(rol_seq.nextval,'Delivery','Se encarga de trasladar los pedidos desde el local hasta la dirección del cliente');
+insert into rol values(rol_seq.nextval,'Limpieza','Se encarga de la higiene y limpieza del local');
+insert into rol values(rol_seq.nextval,'Cajero','Se encarga de cobrar las cuentas a los clientes');
+insert into rol values(rol_seq.nextval,'Contador','Se encarga de las finanzas del local');
+insert into rol values(rol_seq.nextval,'Recreador','Se encarga de la coordinación de eventos y actividades en el local');
+insert into rol values(rol_seq.nextval,'Catador de vinos','Se encarga de seleccionar y abastecer el local de vinos');
+
 --CONTRATOS
-INSERT INTO CONTRATO (ID, FECHAS, MOTIVO_EGRESO, ID_ROL, ID_EMPLEADO, ID_SUCURSAL)
-VALUES (CONTRATO_SEQ.nextval, CALENDARIO('5-dec-2021', '7-sep-2022'), 'Fallecimiento', 1, 1, 1);
-INSERT INTO CONTRATO (ID, FECHAS, MOTIVO_EGRESO, ID_ROL, ID_EMPLEADO, ID_SUCURSAL)
-VALUES (CONTRATO_SEQ.nextval, CALENDARIO('18-jan-2022', null), null, 2, 2, 1);
-INSERT INTO CONTRATO (ID, FECHAS, MOTIVO_EGRESO, ID_ROL, ID_EMPLEADO, ID_SUCURSAL)
-VALUES (CONTRATO_SEQ.nextval, CALENDARIO('1-mar-2022', null), null, 3, 3, 1);
-
---Menu_dia
-insert into menu_dia values(1,1,to_date('2022-11-15', 'yyyy-mm-dd'));
-insert into menu_dia values(2,1,to_date('2022-11-12', 'yyyy-mm-dd'));
-insert into MENU_DIA (CODIGO_PLATO, ID_SUCURSAL, FECHA) values (4,1,sysdate);
-insert into MENU_DIA (CODIGO_PLATO, ID_SUCURSAL, FECHA) values (5,1,sysdate);
-
---promos
-insert into promocion values(1,1,'2x1',CALENDARIO(to_date('2022-11-09','yyyy-mm-dd'),to_date('2022-11-12','yyyy-mm-dd')),3,'promoción',10);
-insert into plato_promocion values(3,1,10);
+INSERT INTO CONTRATO (ID, FECHAS, MOTIVO_EGRESO,SALARIO, ID_ROL, ID_EMPLEADO, ID_SUCURSAL)
+VALUES (CONTRATO_SEQ.nextval, CALENDARIO('5-dec-2021', '7-sep-2022'),'Fallecimiento',200, 1, 1, 1);
+INSERT INTO CONTRATO (ID, FECHAS, MOTIVO_EGRESO, SALARIO,ID_ROL, ID_EMPLEADO, ID_SUCURSAL)
+VALUES (CONTRATO_SEQ.nextval, CALENDARIO('18-jan-2022', null), null,150, 2, 2, 1);
+INSERT INTO CONTRATO (ID, FECHAS, MOTIVO_EGRESO,SALARIO, ID_ROL, ID_EMPLEADO, ID_SUCURSAL)
+VALUES (CONTRATO_SEQ.nextval, CALENDARIO('1-mar-2022', null), null,400, 3, 3, 1);
+insert into contrato values(CONTRATO_SEQ.nextval,CALENDARIO(to_date('2022-09-08','yyyy-mm-dd'),null),'',150,1,4,2);
+insert into contrato values(CONTRATO_SEQ.nextval,CALENDARIO(to_date('2022-01-01','yyyy-mm-dd'),to_date('2023-01-01','yyyy-mm-dd')),'',80,5,5,2);
+insert into contrato values(CONTRATO_SEQ.nextval,CALENDARIO(to_date('2022-01-01','yyyy-mm-dd'),to_date('2023-01-01','yyyy-mm-dd')),'',50,6,6,3);
+insert into contrato values(CONTRATO_SEQ.nextval,CALENDARIO(to_date('2022-01-01','yyyy-mm-dd'),to_date('2023-01-01','yyyy-mm-dd')),'',50,7,7,1);
+insert into contrato values(CONTRATO_SEQ.nextval,CALENDARIO(to_date('2022-01-01','yyyy-mm-dd'),to_date('2023-01-01','yyyy-mm-dd')),'',90,8,8,2);
+insert into contrato values(CONTRATO_SEQ.nextval,CALENDARIO(to_date('2022-01-01','yyyy-mm-dd'),to_date('2023-01-01','yyyy-mm-dd')),'',500,3,9,2);
+insert into contrato values(CONTRATO_SEQ.nextval,CALENDARIO(to_date('2022-01-01','yyyy-mm-dd'),to_date('2023-01-01','yyyy-mm-dd')),'',70,10,10,1);
+insert into contrato values(CONTRATO_SEQ.nextval,CALENDARIO(to_date('2022-01-01','yyyy-mm-dd'),to_date('2023-01-01','yyyy-mm-dd')),'',60,11,11,2);
+insert into contrato values(CONTRATO_SEQ.nextval,CALENDARIO(to_date('2022-01-01','yyyy-mm-dd'),to_date('2023-01-01','yyyy-mm-dd')),'',400,3,14,3);
 
 --Calificaciones sucursal 1
 INSERT INTO CALIFICACION (ID_PEDIDO, CODIGO, PUNTAJE, OBSERVACIONES) VALUES (1, CALIFICACION_SEQ.nextval, 4, 'Buen servicio');
@@ -214,7 +528,6 @@ INSERT INTO CALIFICACION (ID_PEDIDO, CODIGO, PUNTAJE, OBSERVACIONES) VALUES (4, 
 INSERT INTO CALIFICACION (ID_PEDIDO, CODIGO, PUNTAJE, OBSERVACIONES) VALUES (5, CALIFICACION_SEQ.nextval, 5, 'Muy sabrosa la comida');
 
 -- CALIFICACIONES SUCURSAL 2
-INSERT INTO CALIFICACION (ID_PEDIDO, CODIGO, PUNTAJE, OBSERVACIONES) VALUES (5, CALIFICACION_SEQ.nextval, 5, 'Muy sabrosa la comida');
 INSERT INTO CALIFICACION (ID_PEDIDO, CODIGO, PUNTAJE, OBSERVACIONES) VALUES (6, CALIFICACION_SEQ.nextval, 1, 'Pésimo servicio');
 INSERT INTO CALIFICACION (ID_PEDIDO, CODIGO, PUNTAJE, OBSERVACIONES) VALUES (7, CALIFICACION_SEQ.nextval, 4, 'Buen servicio');
 INSERT INTO CALIFICACION (ID_PEDIDO, CODIGO, PUNTAJE, OBSERVACIONES) VALUES (8, CALIFICACION_SEQ.nextval, 2, 'Mediocre servicio');
@@ -228,25 +541,53 @@ INSERT INTO CALIFICACION (ID_PEDIDO, CODIGO, PUNTAJE, OBSERVACIONES) VALUES (13,
 INSERT INTO CALIFICACION (ID_PEDIDO, CODIGO, PUNTAJE, OBSERVACIONES) VALUES (14, CALIFICACION_SEQ.nextval, 4, 'Buen servicio');
 INSERT INTO CALIFICACION (ID_PEDIDO, CODIGO, PUNTAJE, OBSERVACIONES) VALUES (15, CALIFICACION_SEQ.nextval, 3, 'Margarita muy fuerte');
 
--- insert promocion reporte 3
-insert into promocion values(1,2,'2x1',CALENDARIO(to_date('2022-11-09','yyyy-mm-dd'),to_date('2022-11-12','yyyy-mm-dd')),2.5,'promoción',10);
-insert into promocion values(1,3,'Postre a 2$',CALENDARIO(to_date('2022-11-09','yyyy-mm-dd'),to_date('2022-11-15','yyyy-mm-dd')),2,'promoción',10);
-insert into promocion values(1,4,'Postre a 1$',CALENDARIO(to_date('2022-11-01','yyyy-mm-dd'),to_date('2022-11-07','yyyy-mm-dd')),1,'promoción',10);
-insert into promocion values(1,5,'Bebida a 1$',CALENDARIO(to_date('2022-11-01','yyyy-mm-dd'),to_date('2022-11-18','yyyy-mm-dd')),1,'promoción',10);
-insert into promocion values(1,6,'Bebida a 0.5$',CALENDARIO(to_date('2022-10-01','yyyy-mm-dd'),to_date('2022-11-01','yyyy-mm-dd')),1,'promoción',10);
-insert into promocion values(1,7,'Plato principal a 5$',CALENDARIO(to_date('2022-10-01','yyyy-mm-dd'),to_date('2022-10-10','yyyy-mm-dd')),5,'promoción',10);
+--PROVEEDORES
+INSERT INTO PROVEEDOR (RIF, NOMBRE) VALUES ('J172361298','Los pollos hermanos');
+INSERT INTO PROVEEDOR (RIF, NOMBRE) VALUES ('J235435671','Alimentos alimenticios®');
+INSERT INTO PROVEEDOR (RIF, NOMBRE) VALUES ('J002354128','Comestibles la Guaira');
+INSERT INTO PROVEEDOR (RIF, NOMBRE) VALUES ('J232404302','Comida caracas');
+INSERT INTO PROVEEDOR (RIF, NOMBRE) VALUES ('J968270235','Alimentos Perez');
 
--- promociones de octubre y noviembre
-insert into plato_promocion values(7,6,1);
-insert into plato_promocion values(9,6,1);
-insert into plato_promocion values(10,6,1);
-insert into plato_promocion values(14,3,1);
-insert into plato_promocion values(13,3,1);
-insert into plato_promocion values(15,3,1);
-insert into plato_promocion values(1,7,1);
-insert into plato_promocion values(2,7,1);
-insert into plato_promocion values(4,7,1);
-insert into plato_promocion values(9,5,1);
-insert into plato_promocion values(10,5,1);
+--PROVEEDOR_PRODUCTO
+DECLARE
+    disponibilidad_random INTEGER;
+    precio_random FLOAT;
+BEGIN
+    FOR I IN (SELECT * FROM PROVEEDOR)
+    LOOP
+        FOR J IN (SELECT * FROM PRODUCTO)
+        LOOP
+            SELECT DBMS_RANDOM.VALUE(0,1) INTO disponibilidad_random FROM DUAL;
+            SELECT ROUND(DBMS_RANDOM.VALUE(1,10),2) INTO precio_random FROM DUAL;
+            INSERT INTO PROVEEDOR_PRODUCTO (RIF_PROVEEDOR, ID_PRODUCTO, DISPONIBILIDAD, PRECIO)
+            VALUES (I.RIF,J.ID,disponibilidad_random,precio_random);
+        end loop;
+    end loop;
+end;
+
+--MENU_DIA
+DECLARE
+    fecha_inicio NUMBER;
+    fecha_fin    NUMBER;
+    random       NUMBER;
+    aux          NUMBER;
+BEGIN
+    fecha_inicio := to_number(to_char(to_date('2022-11-15', 'yyyy-MM-dd'), 'j'));
+    fecha_fin := to_number(to_char(to_date('2022-11-20', 'yyyy-MM-dd'), 'j'));
+    FOR I IN (SELECT * FROM SUCURSAL)
+        LOOP
+            FOR J IN fecha_inicio..fecha_fin
+                LOOP
+                    FOR K IN (SELECT * FROM INVENTARIO WHERE ID_SUCURSAL = I.ID)
+                        LOOP
+                            SELECT ROUND(DBMS_RANDOM.VALUE(0, 0.5),2) INTO random FROM DUAL;
+                            UPDATE INVENTARIO
+                            SET CANTIDAD=CAPACIDAD_MAXIMA * random
+                            WHERE ID_SUCURSAL = K.ID_SUCURSAL AND ID_PRODUCTO = K.ID_PRODUCTO;
+                        end loop;
+                    aux := SIMULACION2_PKG.SELECCIONAR_PLATOS((to_date(J, 'j')), I.ID);
+                end loop;
+        END LOOP;
+end;
 
 COMMIT;

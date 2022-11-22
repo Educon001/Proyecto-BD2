@@ -57,7 +57,7 @@ CREATE OR REPLACE TYPE HORARIO AS OBJECT
     hora_inicio interval day to second,
     hora_fin    interval day to second,
     CONSTRUCTOR FUNCTION horario(hora_inicio interval day to second, hora_fin interval day to second) RETURN SELF AS RESULT,
-    STATIC FUNCTION formatearHora(hora interval day to second) RETURN VARCHAR2,
+    STATIC FUNCTION formatearHora(intervalo interval day to second) RETURN VARCHAR2,
     MEMBER FUNCTION getHoraInicio RETURN VARCHAR2,
     MEMBER FUNCTION getHoraFin RETURN VARCHAR2
 );

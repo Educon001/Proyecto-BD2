@@ -309,3 +309,5 @@ CREATE SEQUENCE calificacion_seq;
 CREATE SEQUENCE orden_seq;
 CREATE SEQUENCE producto_seq;
 CREATE SEQUENCE egreso_seq;
+CREATE SEQUENCE cliente_seq;
+CREATE SEQUENCE pago_seq;

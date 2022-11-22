@@ -84,7 +84,7 @@ CREATE OR REPLACE PACKAGE BODY simulacion2_pkg IS
                 disponible := 1;
                 FOR prod IN (SELECT ID_PRODUCTO, CANTIDAD FROM PLATO_PRODUCTO WHERE CODIGO_PLATO = plato_aux.CODIGO)
                     LOOP
-                        SELECT CANTIDAD INTO cant_temp FROM INVENTARIO WHERE ID_PRODUCTO = prod.ID_PRODUCTO;
+                        SELECT CANTIDAD INTO cant_temp FROM INVENTARIO WHERE ID_PRODUCTO = prod.ID_PRODUCTO AND ID_SUCURSAL=sucursal_id;
                         IF cant_temp < prod.CANTIDAD then
                             disponible := 0;
                             EXIT;
