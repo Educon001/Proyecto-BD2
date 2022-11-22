@@ -64,3 +64,13 @@ BEGIN
     WHERE ID=producto_id;
     RETURN nombre_producto;
 end;
+
+CREATE OR REPLACE FUNCTION nombre_sucursal(sucursal_id NUMBER) RETURN VARCHAR2 IS
+    nombre_sucursal VARCHAR2(100);
+BEGIN
+    SELECT NOMBRE
+    INTO nombre_sucursal
+    FROM SUCURSAL
+    WHERE ID=sucursal_id;
+    RETURN nombre_sucursal;
+end;
