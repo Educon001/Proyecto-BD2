@@ -105,3 +105,14 @@ begin
     end if;
     RETURN 'a';
 end;
+
+CREATE OR REPLACE PROCEDURE mensaje_sucursal(sucursal_seleccionada NUMBER) IS
+    nombre_sucursal SUCURSAL.NOMBRE%type;
+BEGIN
+    SELECT NOMBRE
+    INTO nombre_sucursal
+    FROM SUCURSAL
+    WHERE ID = sucursal_seleccionada;
+
+    DBMS_OUTPUT.PUT_LINE('Se ha seleccionado la sucursal "' || nombre_sucursal || '"');
+END;

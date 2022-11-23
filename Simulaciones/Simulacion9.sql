@@ -1,5 +1,4 @@
 CREATE OR REPLACE PACKAGE simulacion9_pkg IS
-    PROCEDURE mensaje_sucursal(sucursal_seleccionada NUMBER);
     FUNCTION sucursal_random RETURN NUMBER;
     FUNCTION plato_random RETURN NUMBER;
     PROCEDURE mensaje_productos_plato(plato_parametro NUMBER);
@@ -10,16 +9,6 @@ CREATE OR REPLACE PACKAGE simulacion9_pkg IS
 END;
 
 CREATE OR REPLACE PACKAGE BODY simulacion9_pkg IS
-    PROCEDURE mensaje_sucursal(sucursal_seleccionada NUMBER) IS
-        nombre_sucursal SUCURSAL.NOMBRE%type;
-    BEGIN
-        SELECT NOMBRE
-        INTO nombre_sucursal
-        FROM SUCURSAL
-        WHERE ID = sucursal_seleccionada;
-
-        DBMS_OUTPUT.PUT_LINE('Se ha seleccionado la sucursal "' || nombre_sucursal || '"');
-    END;
 
     FUNCTION sucursal_random
         RETURN NUMBER IS
@@ -160,9 +149,10 @@ CREATE OR REPLACE PACKAGE BODY simulacion9_pkg IS
             DBMS_OUTPUT.PUT_LINE(' ');
             INSERT INTO PEDIDO (ID_SUCURSAL, ID, TIPO, FECHA_HORA, MONTO_TOTAL)
             VALUES (sucursal_parametro, PEDIDO_SEQ.nextval, 'EN LOCAL', SYSDATE, 0);
+            DBMS_OUTPUT.DISABLE();
             INSERT INTO PLATO_PEDIDO (CODIGO_PLATO, ID_PEDIDO, CANTIDAD)
             VALUES (plato_parametro, PEDIDO_SEQ.currval, 1);
-            COMMIT;
+            DBMS_OUTPUT.ENABLE();
             solicitar_plato(sucursal_parametro, plato_parametro);
         ELSE
             DBMS_OUTPUT.PUT_LINE(' ');

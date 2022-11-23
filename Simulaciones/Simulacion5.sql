@@ -1,5 +1,4 @@
 CREATE OR REPLACE PACKAGE simulacion5_pkg IS
-    PROCEDURE mensaje_sucursal(sucursal_seleccionada NUMBER);
     FUNCTION sucursal_random RETURN NUMBER;
     FUNCTION disponible(sucursal_parametro NUMBER, plato_parametro NUMBER) RETURN BOOLEAN;
     FUNCTION plato_recomendado(sucursal_parametro NUMBER) RETURN NUMBER;
@@ -7,17 +6,6 @@ CREATE OR REPLACE PACKAGE simulacion5_pkg IS
 END;
 
 CREATE OR REPLACE PACKAGE BODY simulacion5_pkg IS
-
-    PROCEDURE mensaje_sucursal(sucursal_seleccionada NUMBER) IS
-        nombre_sucursal SUCURSAL.NOMBRE%type;
-    BEGIN
-        SELECT NOMBRE
-        INTO nombre_sucursal
-        FROM SUCURSAL
-        WHERE ID = sucursal_seleccionada;
-
-        DBMS_OUTPUT.PUT_LINE('Se ha seleccionado la sucursal "' || nombre_sucursal || '"');
-    END;
 
     FUNCTION sucursal_random
         RETURN NUMBER IS

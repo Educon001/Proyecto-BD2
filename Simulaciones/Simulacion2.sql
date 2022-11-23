@@ -1,5 +1,4 @@
 CREATE OR REPLACE PACKAGE simulacion2_pkg IS
-    PROCEDURE mensaje_sucursal(sucursal_seleccionada NUMBER);
     FUNCTION sucursal_random RETURN NUMBER;
     FUNCTION generar_fecha_random RETURN DATE;
     FUNCTION validar_fecha_menu_dia(fecha_parametro DATE, sucursal_id NUMBER) RETURN NUMBER;
@@ -8,16 +7,6 @@ CREATE OR REPLACE PACKAGE simulacion2_pkg IS
 END;
 
 CREATE OR REPLACE PACKAGE BODY simulacion2_pkg IS
-    PROCEDURE mensaje_sucursal(sucursal_seleccionada NUMBER) IS
-        nombre_sucursal SUCURSAL.NOMBRE%type;
-    BEGIN
-        SELECT NOMBRE
-        INTO nombre_sucursal
-        FROM SUCURSAL
-        WHERE ID = sucursal_seleccionada;
-
-        DBMS_OUTPUT.PUT_LINE('Se ha seleccionado la sucursal "' || nombre_sucursal || '"');
-    END;
 
     FUNCTION sucursal_random
         RETURN NUMBER IS
