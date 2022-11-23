@@ -1,27 +1,10 @@
 CREATE OR REPLACE PACKAGE simulacion5_pkg IS
-    FUNCTION sucursal_random RETURN NUMBER;
     FUNCTION disponible(sucursal_parametro NUMBER, plato_parametro NUMBER) RETURN BOOLEAN;
     FUNCTION plato_recomendado(sucursal_parametro NUMBER) RETURN NUMBER;
     PROCEDURE simulacion5;
 END;
 
 CREATE OR REPLACE PACKAGE BODY simulacion5_pkg IS
-
-    FUNCTION sucursal_random
-        RETURN NUMBER IS
-        id_sucursal SUCURSAL.ID%type;
-    BEGIN
-
-        SELECT id
-        INTO id_sucursal
-        from (select id
-              from SUCURSAL
-              order by dbms_random.value)
-        where rownum <= 1;
-        mensaje_sucursal(id_sucursal);
-        RETURN id_sucursal;
-
-    END;
 
     FUNCTION disponible(sucursal_parametro NUMBER, plato_parametro NUMBER) RETURN BOOLEAN IS
         c1               SYS_REFCURSOR;

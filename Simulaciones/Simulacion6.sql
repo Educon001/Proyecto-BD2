@@ -10,75 +10,12 @@ CREATE OR REPLACE PACKAGE simulacion6_pkg IS
     FUNCTION ya_esta_plato_en_pedido(cod_plato PLATO.CODIGO%TYPE, id_ped PEDIDO.ID%TYPE) RETURN NUMBER;
     FUNCTION cantidad_puntaje_random RETURN NUMBER;
 
-    FUNCTION sucursal_random RETURN NUMBER;
-    FUNCTION cliente_random RETURN NUMBER;
-    FUNCTION escoger_tipo_pago RETURN PAGO_RESERVA.TIPO_PAGO%TYPE;
-
     PROCEDURE simulacion_6;
 END;
 
 
 CREATE OR REPLACE PACKAGE BODY simulacion6_pkg IS
 
-FUNCTION escoger_tipo_pago
-RETURN PAGO_RESERVA.TIPO_PAGO%TYPE IS
-num_tipo NUMBER;
-begin
-    select round(dbms_random.value(1,7)) into num_tipo from dual;
-
-    IF num_tipo = 1 THEN
-        RETURN 'EFECTIVO';
-    end if;
-    IF num_tipo = 2 THEN
-        RETURN 'POS';
-    end if;
-   IF num_tipo = 3 THEN
-        RETURN 'ZELLE';
-    end if;
-    IF num_tipo = 4 THEN
-        RETURN 'PIPOL PAY';
-    end if;
-    IF num_tipo = 5 THEN
-        RETURN 'PAYPAL';
-    end if;
-    IF num_tipo = 6 THEN
-        RETURN 'ZINLI';
-    end if;
-    IF num_tipo = 7 THEN
-        RETURN 'CRIPTOMONEDAS';
-    end if;
-end;
-
-FUNCTION cliente_random
-RETURN NUMBER IS
-cliente_id CLIENTE.id%type;
-BEGIN
-    SELECT id
-    INTO cliente_id
-    from (  select *
-            from CLIENTE
-            order by dbms_random.value )
-    where rownum <= 1;
-
-    RETURN cliente_id;
-
-END;
-
-FUNCTION sucursal_random
-RETURN NUMBER IS
-id_sucursal SUCURSAL.ID%type;
-BEGIN
-
-    SELECT id
-    INTO id_sucursal
-    from (  select id
-            from SUCURSAL
-            order by dbms_random.value )
-    where rownum <= 1;
-    mensaje_sucursal(id_sucursal);
-    RETURN id_sucursal;
-
-END;
 -- FUNCION PARA SELECCIONAR TIPO DE PEDIDO
 FUNCTION tipo_pedido_random
 RETURN PEDIDO.TIPO%TYPE IS

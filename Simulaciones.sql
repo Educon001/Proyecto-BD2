@@ -1,6 +1,6 @@
 --Simulacion 1: Delivery muy lejos
 BEGIN
-
+    SIMULACION_1();
 end;
 
 --Simulación 2: Generación de menú del día
@@ -42,3 +42,5 @@ end;
 BEGIN
     SIMULACION9_PKG.SIMULACION9();
 end;
+
+SELECT * FROM PEDIDO

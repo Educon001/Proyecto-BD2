@@ -116,3 +116,35 @@ BEGIN
 
     DBMS_OUTPUT.PUT_LINE('Se ha seleccionado la sucursal "' || nombre_sucursal || '"');
 END;
+
+CREATE OR REPLACE FUNCTION sucursal_random
+    RETURN NUMBER IS
+    id_sucursal SUCURSAL.ID%type;
+BEGIN
+
+    SELECT id
+    INTO id_sucursal
+    from (select id
+          from SUCURSAL
+          order by dbms_random.value)
+    where rownum <= 1;
+    mensaje_sucursal(id_sucursal);
+    RETURN id_sucursal;
+
+END;
+
+-- FUNCION PARA SELECCIONAR ALEATORIAMENTE A UN CLIENTE
+CREATE OR REPLACE FUNCTION cliente_random
+RETURN NUMBER IS
+cliente_id CLIENTE.id%type;
+BEGIN
+    SELECT id
+    INTO cliente_id
+    from (  select *
+            from CLIENTE
+            order by dbms_random.value )
+    where rownum <= 1;
+
+    RETURN cliente_id;
+
+END;

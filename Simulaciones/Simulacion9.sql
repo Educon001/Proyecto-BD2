@@ -1,5 +1,4 @@
 CREATE OR REPLACE PACKAGE simulacion9_pkg IS
-    FUNCTION sucursal_random RETURN NUMBER;
     FUNCTION plato_random RETURN NUMBER;
     PROCEDURE mensaje_productos_plato(plato_parametro NUMBER);
     FUNCTION proveedor_random(producto_parametro NUMBER) RETURN VARCHAR2;
@@ -9,22 +8,6 @@ CREATE OR REPLACE PACKAGE simulacion9_pkg IS
 END;
 
 CREATE OR REPLACE PACKAGE BODY simulacion9_pkg IS
-
-    FUNCTION sucursal_random
-        RETURN NUMBER IS
-        id_sucursal SUCURSAL.ID%type;
-    BEGIN
-
-        SELECT id
-        INTO id_sucursal
-        from (select id
-              from SUCURSAL
-              order by dbms_random.value)
-        where rownum <= 1;
-        mensaje_sucursal(id_sucursal);
-        RETURN id_sucursal;
-
-    END;
 
     FUNCTION plato_random RETURN NUMBER IS
         plato_id     PLATO.CODIGO%type;

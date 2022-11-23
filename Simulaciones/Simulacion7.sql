@@ -4,7 +4,6 @@ CREATE OR REPLACE PACKAGE simulacion7_pkg IS
     FUNCTION total_pagos_pedidos(sucursal_id SUCURSAL.ID%type, fecha DATE) RETURN FLOAT;
     FUNCTION total_pagos_reservas(sucursal_id SUCURSAL.ID%type, fecha_parametro DATE) RETURN FLOAT;
     FUNCTION total_egresos_dia(sucursal_id SUCURSAL.ID%TYPE, fecha DATE) RETURN FLOAT;
-    FUNCTION SUCURSAL_RANDOM RETURN NUMBER;
 
     PROCEDURE mostrar_pagos_pedidos(num NUMBER, id_pago NUMBER, id_pedido NUMBER, monto FLOAT);
     PROCEDURE mostrar_pagos_reservas(num NUMBER, id_pago NUMBER, id_RESERVA NUMBER, monto FLOAT);
@@ -13,22 +12,6 @@ CREATE OR REPLACE PACKAGE simulacion7_pkg IS
 END;
 
 CREATE OR REPLACE PACKAGE BODY simulacion7_pkg IS
-
-FUNCTION sucursal_random
-RETURN NUMBER IS
-id_sucursal SUCURSAL.ID%type;
-BEGIN
-
-    SELECT id
-    INTO id_sucursal
-    from (  select id
-            from SUCURSAL
-            order by dbms_random.value )
-    where rownum <= 1;
-    mensaje_sucursal(id_sucursal);
-    RETURN id_sucursal;
-
-END;
 
 PROCEDURE mostrar_pagos_pedidos(num NUMBER, id_pago NUMBER, id_pedido NUMBER, monto FLOAT)
 IS

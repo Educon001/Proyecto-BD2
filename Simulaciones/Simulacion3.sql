@@ -1,6 +1,4 @@
 CREATE OR REPLACE PACKAGE simulacion3_pkg IS
-    FUNCTION sucursal_random RETURN NUMBER;
-    FUNCTION cliente_random RETURN NUMBER;
     FUNCTION generar_fecha_reserva RETURN DATE;
     FUNCTION validar_fecha_reserva(fecha_solicitada DATE) RETURN NUMBER;
     FUNCTION verificar_capacidad_mesas_actual(sucursal_id mesa.id_sucursal%type, num_personas NUMBER) RETURN NUMBER;
@@ -10,42 +8,12 @@ CREATE OR REPLACE PACKAGE simulacion3_pkg IS
     FUNCTION calcular_abono_inicial(horario_reserva HORARIO, capacidad_mesa NUMBER) RETURN NUMBER;
     FUNCTION capacidad_mesa(sucursal_id NUMBER, numero NUMBER) RETURN NUMBER;
 
-    PROCEDURE mensaje_sucursal(sucursal_seleccionada NUMBER);
     PROCEDURE disponibilidad_mesas (sucursal_seleccionada NUMBER);
     PROCEDURE mensaje_reserva_exitosa(id_reserva NUMBER);
     PROCEDURE simulacion_3;
 END;
 
 CREATE OR REPLACE PACKAGE BODY simulacion3_pkg IS
--- MENSAJE DE SUCURSAL SELECCIONADA
-PROCEDURE mensaje_sucursal(sucursal_seleccionada NUMBER) IS
-nombre_sucursal SUCURSAL.NOMBRE%type;
-BEGIN
-    SELECT nombre_sucursal
-    INTO nombre_sucursal
-    FROM SUCURSAL
-    WHERE ID = sucursal_seleccionada;
-
-    DBMS_OUTPUT.PUT_LINE('Se ha seleccionado la sucursal ' || sucursal_seleccionada);
-END;
-
--- FUNCION PARA SELECCIONAR UNA SUCURSAL ALEATORIAMENTE
-FUNCTION sucursal_random
-RETURN NUMBER IS
-id_sucursal SUCURSAL.ID%type;
-BEGIN
-
-    SELECT id
-    INTO id_sucursal
-    from (  select id
-            from SUCURSAL
-            order by dbms_random.value )
-    where rownum <= 1;
-    mensaje_sucursal(id_sucursal);
-    RETURN id_sucursal;
-
-END;
-
 
 -- PROCEDIMIENTO PARA ASIGNAR DISPONIBILIDAD ALEATORIAMENTE A LAS MESAS DE LA SUCURSAL
 PROCEDURE disponibilidad_mesas (sucursal_seleccionada NUMBER) IS
@@ -83,22 +51,6 @@ BEGIN
 
             FETCH cursor_mesas INTO registro_mesa;
         END LOOP;
-
-END;
-
--- FUNCION PARA SELECCIONAR ALEATORIAMENTE A UN CLIENTE
-FUNCTION cliente_random
-RETURN NUMBER IS
-cliente_id CLIENTE.id%type;
-BEGIN
-    SELECT id
-    INTO cliente_id
-    from (  select *
-            from CLIENTE
-            order by dbms_random.value )
-    where rownum <= 1;
-
-    RETURN cliente_id;
 
 END;
 

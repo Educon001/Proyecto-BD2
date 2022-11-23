@@ -1,5 +1,4 @@
 CREATE OR REPLACE PACKAGE simulacion2_pkg IS
-    FUNCTION sucursal_random RETURN NUMBER;
     FUNCTION generar_fecha_random RETURN DATE;
     FUNCTION validar_fecha_menu_dia(fecha_parametro DATE, sucursal_id NUMBER) RETURN NUMBER;
     FUNCTION seleccionar_platos(fecha_parametro DATE, sucursal_id NUMBER) RETURN NUMBER;
@@ -7,22 +6,6 @@ CREATE OR REPLACE PACKAGE simulacion2_pkg IS
 END;
 
 CREATE OR REPLACE PACKAGE BODY simulacion2_pkg IS
-
-    FUNCTION sucursal_random
-        RETURN NUMBER IS
-        id_sucursal SUCURSAL.ID%type;
-    BEGIN
-
-        SELECT id
-        INTO id_sucursal
-        from (select id
-              from SUCURSAL
-              order by dbms_random.value)
-        where rownum <= 1;
-        mensaje_sucursal(id_sucursal);
-        RETURN id_sucursal;
-
-    END;
 
 --Función que genera una fecha aleatoria
     FUNCTION generar_fecha_random
