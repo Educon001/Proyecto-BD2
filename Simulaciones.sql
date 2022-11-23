@@ -15,7 +15,7 @@ end;
 
 --Simulación 4: Se despide y contrata un empleado
 BEGIN
-
+    SIMULACION_4();
 end;
 
 --Simulación 5: Recomendación del plato del día según calificaciones
@@ -43,4 +43,7 @@ BEGIN
     SIMULACION9_PKG.SIMULACION9();
 end;
 
-SELECT * FROM PEDIDO
+SELECT * FROM PEDIDO;
+SELECT * FROM CONTRATO;
+
+COMMIT;
