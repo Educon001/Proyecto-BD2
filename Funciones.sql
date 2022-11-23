@@ -65,6 +65,16 @@ BEGIN
     RETURN nombre_producto;
 end;
 
+CREATE OR REPLACE FUNCTION unidad_producto(producto_id NUMBER) RETURN VARCHAR2 IS
+    unidad_producto VARCHAR2(100);
+BEGIN
+    SELECT UNIDAD_MEDIDA
+    INTO unidad_producto
+    FROM PRODUCTO
+    WHERE ID=producto_id;
+    RETURN unidad_producto;
+end;
+
 CREATE OR REPLACE FUNCTION nombre_sucursal(sucursal_id NUMBER) RETURN VARCHAR2 IS
     nombre_sucursal VARCHAR2(100);
 BEGIN

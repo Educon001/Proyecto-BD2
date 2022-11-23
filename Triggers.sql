@@ -22,6 +22,7 @@ CREATE OR REPLACE TRIGGER resta_inventario_plato
     FOR EACH ROW
 DECLARE
     sucursal_id NUMBER;
+    cant_inventario NUMBER;
 BEGIN
     SELECT ID_SUCURSAL
     INTO sucursal_id
@@ -31,8 +32,16 @@ BEGIN
                  FROM PLATO_PRODUCTO
                  WHERE CODIGO_PLATO = :new.CODIGO_PLATO)
         LOOP
+            SELECT CANTIDAD-prod.CANTIDAD
+            INTO cant_inventario
+            FROM INVENTARIO
+            WHERE ID_PRODUCTO = prod.ID_PRODUCTO
+              AND ID_SUCURSAL = sucursal_id;
+            IF cant_inventario<0 THEN
+                cant_inventario:=0;
+            end if;
             UPDATE INVENTARIO
-            SET CANTIDAD=CANTIDAD - prod.CANTIDAD
+            SET CANTIDAD=cant_inventario
             WHERE ID_PRODUCTO = prod.ID_PRODUCTO
               AND ID_SUCURSAL = sucursal_id;
         end loop;

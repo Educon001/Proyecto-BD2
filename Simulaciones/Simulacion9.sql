@@ -89,7 +89,7 @@ CREATE OR REPLACE PACKAGE BODY simulacion9_pkg IS
                              RPAD(' Producto solicitado |',22) || RPAD(' Cantidad solicitada |', 22));
         DBMS_OUTPUT.PUT_LINE(LPAD('|', 18) || RPAD(' ' || n_orden, 10) || '|' ||
                              RPAD(' ' || NOMBRE_PRODUCTO(producto_parametro), 21) || '|' ||
-                             RPAD(' ' || cant_prod, 21) || '|');
+                             RPAD(' ' || cant_prod || ' ' || UNIDAD_PRODUCTO(producto_parametro), 21) || '|');
     END;
 
     PROCEDURE solicitar_plato(sucursal_parametro NUMBER, plato_parametro NUMBER) IS

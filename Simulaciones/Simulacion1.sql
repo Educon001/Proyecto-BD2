@@ -44,11 +44,11 @@ CREATE OR REPLACE TRIGGER Delivery_Lejos AFTER INSERT ON PEDIDO FOR EACH ROW
     longitud2_aux sucursal.direccion.longitud%type;
         aux_tipo_pago number;
         BEGIN
-            select S.direccion.LATITUD into latitud1_aux from sucursal S WHERE S.ID = :new.ID_SUCURSAL;
-            select S.direccion.LONGITUD into longitud1_aux from sucursal S where S.ID = :new.ID_SUCURSAL;
-            select Cl.direccion.LATITUD into latitud2_aux from cliente Cl where Cl.ID = :new.ID_CLIENTE;
-            select Cl.direccion.LONGITUD into longitud2_aux from cliente Cl where Cl.ID = :new.ID_CLIENTE;
             IF (:NEW.tipo = 'DELIVERY') THEN
+                select S.direccion.LATITUD into latitud1_aux from sucursal S WHERE S.ID = :new.ID_SUCURSAL;
+                select S.direccion.LONGITUD into longitud1_aux from sucursal S where S.ID = :new.ID_SUCURSAL;
+                select Cl.direccion.LATITUD into latitud2_aux from cliente Cl where Cl.ID = :new.ID_CLIENTE;
+                select Cl.direccion.LONGITUD into longitud2_aux from cliente Cl where Cl.ID = :new.ID_CLIENTE;
               IF CALCULAR_DISTANCIA (latitud1_aux,longitud1_aux,latitud2_aux,longitud2_aux)>15 THEN
                    RAISE_APPLICATION_ERROR(-20005, 'La distancia entre la sucursal y el cliente es mayor a 15km, no se puede tomar el pedido');
               END IF;
