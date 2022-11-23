@@ -2,7 +2,7 @@
 
 CREATE OR REPLACE PACKAGE simulacion7_pkg IS
     FUNCTION total_pagos_pedidos(sucursal_id SUCURSAL.ID%type, fecha DATE) RETURN FLOAT;
-    FUNCTION total_pagos_reservas(sucursal_id SUCURSAL.ID%type, fecha DATE) RETURN FLOAT;
+    FUNCTION total_pagos_reservas(sucursal_id SUCURSAL.ID%type, fecha_parametro DATE) RETURN FLOAT;
     FUNCTION total_egresos_dia(sucursal_id SUCURSAL.ID%TYPE, fecha DATE) RETURN FLOAT;
     FUNCTION SUCURSAL_RANDOM RETURN NUMBER;
 
@@ -11,7 +11,6 @@ CREATE OR REPLACE PACKAGE simulacion7_pkg IS
     PROCEDURE mostrar_egresos(num NUMBER, motivo egreso.motivo%type, monto egreso.monto%type);
     PROCEDURE simulacion_7;
 END;
-
 
 CREATE OR REPLACE PACKAGE BODY simulacion7_pkg IS
 
@@ -53,9 +52,9 @@ RETURN FLOAT IS
         FROM PAGO_PEDIDO PP JOIN PEDIDO P
         ON (PP.ID_PEDIDO = P.ID)
         WHERE PP.ID_SUCURSAL = sucursal_id AND
-              EXTRACT(YEAR FROM FECHA_HORA) = EXTRACT(YEAR FROM fecha) AND
-              EXTRACT(MONTH FROM FECHA_HORA) = EXTRACT(MONTH FROM fecha) AND
-              EXTRACT(DAY FROM FECHA_HORA) = EXTRACT(DAY FROM fecha)
+              EXTRACT(YEAR FROM P.FECHA_HORA) = EXTRACT(YEAR FROM fecha) AND
+              EXTRACT(MONTH FROM P.FECHA_HORA) = EXTRACT(MONTH FROM fecha) AND
+              EXTRACT(DAY FROM P.FECHA_HORA) = EXTRACT(DAY FROM fecha)
         ORDER BY PP.ID;
     REGISTRO_PAGO_PEDIDO cppedidos%rowtype;
 
@@ -75,7 +74,7 @@ BEGIN
 end;
 
 
-FUNCTION total_pagos_reservas(sucursal_id SUCURSAL.ID%type, fecha DATE)
+FUNCTION total_pagos_reservas(sucursal_id SUCURSAL.ID%type, fecha_parametro DATE)
 RETURN FLOAT IS
     total FLOAT;
     num NUMBER;
@@ -85,7 +84,7 @@ RETURN FLOAT IS
         FROM PAGO_RESERVA PR JOIN RESERVA R
         ON (PR.ID_RESERVA = R.ID)
         WHERE R.ID_SUCURSAL = sucursal_id AND
-              R.FECHA = FECHA
+              CAST(TO_DATE(R.FECHA, 'dd/MM/yyyy') AS DATE) = CAST(TO_DATE(fecha_parametro, 'dd/MM/yyyy') AS DATE)
         ORDER BY PR.ID;
     REGISTRO_PAGO_RESERVA cpreserva%rowtype;
 
@@ -171,7 +170,6 @@ BEGIN
             DBMS_OUTPUT.PUT_LINE('La fecha seleccionada ('|| fecha ||') no es válida.');
         end if;
     end loop;
-    fecha:=current_date-1;
     DBMS_OUTPUT.PUT_LINE(' ');
     DBMS_OUTPUT.PUT_LINE('Paso N°3: INGRESOS');
     DBMS_OUTPUT.PUT_LINE('----------------------------------------------------');
