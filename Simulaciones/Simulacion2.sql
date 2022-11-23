@@ -146,7 +146,3 @@ CREATE OR REPLACE PACKAGE BODY simulacion2_pkg IS
             END LOOP;
     end;
 END;
-
-BEGIN
-    simulacion2_pkg.SIMULACION2();
-end;

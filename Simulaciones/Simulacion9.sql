@@ -93,22 +93,31 @@ CREATE OR REPLACE PACKAGE BODY simulacion9_pkg IS
     PROCEDURE generar_orden(sucursal_parametro NUMBER, producto_parametro NUMBER) IS
         cant_prod              NUMBER;
         proveedor_seleccionado PROVEEDOR.RIF%type;
+        n_orden NUMBER;
+        cap NUMBER;
     BEGIN
         proveedor_seleccionado := proveedor_random(producto_parametro);
         IF proveedor_seleccionado = '-1' THEN
             RETURN;
         end if;
 
-        SELECT CAPACIDAD_MAXIMA - CANTIDAD
+        SELECT (CAPACIDAD_MAXIMA - CANTIDAD) as cant
         INTO cant_prod
         FROM INVENTARIO
-        WHERE ID_PRODUCTO = producto_parametro;
+        WHERE ID_PRODUCTO = producto_parametro AND ID_SUCURSAL=sucursal_parametro;
 
+        n_orden:=ORDEN_SEQ.nextval;
         INSERT INTO ORDEN_COMPRA (ID, MONTO_TOTAL, COMPLETA, ID_SUCURSAL)
-        VALUES (ORDEN_SEQ.nextval, 0, 0, sucursal_parametro);
+        VALUES (n_orden, 0, 0, sucursal_parametro);
         INSERT INTO PRODUCTO_ORDEN (CANTIDAD, ID_PRODUCTO, RIF_PROVEEDOR, ID_ORDEN)
-        VALUES (cant_prod, producto_parametro, proveedor_seleccionado, ORDEN_SEQ.currval);
-        UPDATE ORDEN_COMPRA SET COMPLETA=1 WHERE ID = ORDEN_SEQ.currval;
+        VALUES (cant_prod, producto_parametro, proveedor_seleccionado, n_orden);
+        UPDATE ORDEN_COMPRA SET COMPLETA=1 WHERE ID = n_orden;
+        DBMS_OUTPUT.PUT_LINE(' ');
+        DBMS_OUTPUT.PUT_LINE(RPAD('Orden generada:  |', 18) || RPAD(' N° Orden |', 11) ||
+                             RPAD(' Producto solicitado |',22) || RPAD(' Cantidad solicitada |', 22));
+        DBMS_OUTPUT.PUT_LINE(LPAD('|', 18) || RPAD(' ' || n_orden, 10) || '|' ||
+                             RPAD(' ' || NOMBRE_PRODUCTO(producto_parametro), 21) || '|' ||
+                             RPAD(' ' || cant_prod, 21) || '|');
     END;
 
     PROCEDURE solicitar_plato(sucursal_parametro NUMBER, plato_parametro NUMBER) IS
@@ -153,6 +162,7 @@ CREATE OR REPLACE PACKAGE BODY simulacion9_pkg IS
             VALUES (sucursal_parametro, PEDIDO_SEQ.nextval, 'EN LOCAL', SYSDATE, 0);
             INSERT INTO PLATO_PEDIDO (CODIGO_PLATO, ID_PEDIDO, CANTIDAD)
             VALUES (plato_parametro, PEDIDO_SEQ.currval, 1);
+            COMMIT;
             solicitar_plato(sucursal_parametro, plato_parametro);
         ELSE
             DBMS_OUTPUT.PUT_LINE(' ');
@@ -186,7 +196,3 @@ CREATE OR REPLACE PACKAGE BODY simulacion9_pkg IS
         solicitar_plato(sucursal_seleccionada, plato_seleccionado);
     END;
 END;
-
-BEGIN
-    simulacion9_pkg.simulacion9();
-end;

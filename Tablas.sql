@@ -95,7 +95,7 @@ CREATE TABLE inventario
     cantidad         NUMBER CHECK ( cantidad >= 0 ),
     fecha_inventario DATE,
     capacidad_maxima NUMBER CHECK ( capacidad_maxima > 0 ),
-    CONSTRAINT cantidad_capacidad_check CHECK ( cantidad < capacidad_maxima ),
+    CONSTRAINT cantidad_capacidad_check CHECK ( cantidad <= capacidad_maxima ),
     CONSTRAINT inventario_pk PRIMARY KEY (id_producto, id_sucursal),
     CONSTRAINT inventario_plato_fk FOREIGN KEY (id_producto) REFERENCES producto (id),
     CONSTRAINT inventario_sucursal_fk FOREIGN KEY (id_sucursal) REFERENCES sucursal (id)
@@ -276,7 +276,7 @@ CREATE TABLE orden_compra
 
 CREATE TABLE producto_orden
 (
-    cantidad      INTEGER,
+    cantidad      NUMBER,
     id_producto   NUMBER,
     rif_proveedor VARCHAR2(10),
     id_orden      NUMBER,
@@ -311,3 +311,4 @@ CREATE SEQUENCE producto_seq;
 CREATE SEQUENCE egreso_seq;
 CREATE SEQUENCE cliente_seq;
 CREATE SEQUENCE pago_seq;
+CREATE SEQUENCE promo_seq;

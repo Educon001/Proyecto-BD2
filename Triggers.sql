@@ -61,16 +61,19 @@ CREATE OR REPLACE TRIGGER orden_completada
     AFTER UPDATE OF COMPLETA
     ON ORDEN_COMPRA
     FOR EACH ROW
+DECLARE
+    cant NUMBER;
 BEGIN
     IF :new.COMPLETA = 1 THEN
         INSERT INTO EGRESO (ID, FECHA, MOTIVO, MONTO, ID_SUCURSAL, ID_ORDEN)
-        VALUES (EGRESO_SEQ.nextval, CURRENT_DATE, 'Reposicón de inventario', :new.MONTO_TOTAL, :new.ID_SUCURSAL, :new.ID);
+        VALUES (EGRESO_SEQ.nextval, CURRENT_DATE, 'Reposicón de inventario', :new.MONTO_TOTAL, :new.ID_SUCURSAL,
+                :new.ID);
         FOR prod IN (SELECT ID_PRODUCTO, CANTIDAD
                      FROM PRODUCTO_ORDEN
                      WHERE ID_ORDEN = :new.ID)
             LOOP
                 UPDATE INVENTARIO
-                SET CANTIDAD=CANTIDAD + prod.CANTIDAD,
+                SET CANTIDAD=CANTIDAD+prod.CANTIDAD,
                     FECHA_INVENTARIO=CURRENT_DATE
                 WHERE ID_PRODUCTO = prod.ID_PRODUCTO
                   AND ID_SUCURSAL = :new.ID_SUCURSAL;

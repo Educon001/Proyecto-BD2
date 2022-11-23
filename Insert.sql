@@ -87,55 +87,55 @@ INSERT INTO CLIENTE (ID, TELEFONO, DATOS, DIRECCION)
 VALUES (CLIENTE_SEQ.nextval,'4143982736',DATOS_BASICOS(15,'Robert','Alfredo','Galarga','Hurtado'),DIRECCION(10.500139, -66.877966,'Av. Los Samanes, Caracas 1050, Distrito Capital, Venezuela'));
 
 --PEDIDOS
-INSERT INTO PEDIDO (ID_SUCURSAL,ID_CLIENTE,ID,TIPO,FECHA_HORA,MONTO_TOTAL) VALUES (1,1,PEDIDO_SEQ.nextval,'EN LOCAL',SYSDATE,0);
+INSERT INTO PEDIDO (ID_SUCURSAL,ID_CLIENTE,ID,TIPO,FECHA_HORA,MONTO_TOTAL) VALUES (1,1,PEDIDO_SEQ.nextval,'EN LOCAL',TO_DATE('12/11/2022 10:35','dd/MM/yyyy hh24:mi'),0);
     INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (1,PEDIDO_SEQ.currval,2);
     INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (2,PEDIDO_SEQ.currval,3);
-INSERT INTO PEDIDO (ID_SUCURSAL,ID_CLIENTE,ID,TIPO,FECHA_HORA,MONTO_TOTAL) VALUES (1,2,PEDIDO_SEQ.nextval,'EN LOCAL',SYSDATE,0);
+INSERT INTO PEDIDO (ID_SUCURSAL,ID_CLIENTE,ID,TIPO,FECHA_HORA,MONTO_TOTAL) VALUES (1,2,PEDIDO_SEQ.nextval,'EN LOCAL',TO_DATE('12/11/2022 11:00','dd/MM/yyyy hh24:mi'),0);
     INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (1,PEDIDO_SEQ.currval,3);
     INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (4,PEDIDO_SEQ.currval,1);
-INSERT INTO PEDIDO (ID_SUCURSAL,ID_CLIENTE,ID,TIPO,FECHA_HORA,MONTO_TOTAL) VALUES (1,3,PEDIDO_SEQ.nextval,'EN LOCAL',SYSDATE,0);
+INSERT INTO PEDIDO (ID_SUCURSAL,ID_CLIENTE,ID,TIPO,FECHA_HORA,MONTO_TOTAL) VALUES (1,3,PEDIDO_SEQ.nextval,'EN LOCAL',TO_DATE('12/11/2022 14:33','dd/MM/yyyy hh24:mi'),0);
     INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (3,PEDIDO_SEQ.currval,3);
     INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (5,PEDIDO_SEQ.currval,2);
-INSERT INTO PEDIDO (ID_SUCURSAL,ID_CLIENTE,ID,TIPO,FECHA_HORA,MONTO_TOTAL) VALUES (1,4,PEDIDO_SEQ.nextval,'EN LOCAL',SYSDATE,0);
+INSERT INTO PEDIDO (ID_SUCURSAL,ID_CLIENTE,ID,TIPO,FECHA_HORA,MONTO_TOTAL) VALUES (1,4,PEDIDO_SEQ.nextval,'EN LOCAL',TO_DATE('19/11/2022 10:45','dd/MM/yyyy hh24:mi'),0);
     INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (2,PEDIDO_SEQ.currval,3);
     INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (4,PEDIDO_SEQ.currval,2);
-INSERT INTO PEDIDO (ID_SUCURSAL,ID_CLIENTE,ID,TIPO,FECHA_HORA,MONTO_TOTAL) VALUES (1,5,PEDIDO_SEQ.nextval,'EN LOCAL',SYSDATE,0);
+INSERT INTO PEDIDO (ID_SUCURSAL,ID_CLIENTE,ID,TIPO,FECHA_HORA,MONTO_TOTAL) VALUES (1,5,PEDIDO_SEQ.nextval,'EN LOCAL',TO_DATE('14/11/2022 12:00','dd/MM/yyyy hh24:mi'),0);
     INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (5,PEDIDO_SEQ.currval,2);
     INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (6,PEDIDO_SEQ.currval,1);
     INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (7,PEDIDO_SEQ.currval,1);
 
 --Pedidos sucursal 2
-INSERT INTO PEDIDO (ID_SUCURSAL,ID_CLIENTE,ID,TIPO,FECHA_HORA,MONTO_TOTAL) VALUES (2,6,PEDIDO_SEQ.nextval,'EN LOCAL',SYSDATE,0);
+INSERT INTO PEDIDO (ID_SUCURSAL,ID_CLIENTE,ID,TIPO,FECHA_HORA,MONTO_TOTAL) VALUES (2,6,PEDIDO_SEQ.nextval,'EN LOCAL',TO_DATE('18/11/2022 15:12','dd/MM/yyyy hh24:mi'),0);
     INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (3,PEDIDO_SEQ.currval,2);
     INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (2,PEDIDO_SEQ.currval,3);
-INSERT INTO PEDIDO (ID_SUCURSAL,ID_CLIENTE,ID,TIPO,FECHA_HORA,MONTO_TOTAL) VALUES (2,7,PEDIDO_SEQ.nextval,'DELIVERY',SYSDATE,0);
+INSERT INTO PEDIDO (ID_SUCURSAL,ID_CLIENTE,ID,TIPO,FECHA_HORA,MONTO_TOTAL) VALUES (2,7,PEDIDO_SEQ.nextval,'EN LOCAL',TO_DATE('14/11/2022 19:26','dd/MM/yyyy hh24:mi'),0);
     INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (3,PEDIDO_SEQ.currval,3);
     INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (4,PEDIDO_SEQ.currval,1);
-INSERT INTO PEDIDO (ID_SUCURSAL,ID_CLIENTE,ID,TIPO,FECHA_HORA,MONTO_TOTAL) VALUES (2,8,PEDIDO_SEQ.nextval,'EN LOCAL',SYSDATE,0);
+INSERT INTO PEDIDO (ID_SUCURSAL,ID_CLIENTE,ID,TIPO,FECHA_HORA,MONTO_TOTAL) VALUES (2,8,PEDIDO_SEQ.nextval,'DELIVERY',TO_DATE('13/11/2022 13:13','dd/MM/yyyy hh24:mi'),0);
     INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (4,PEDIDO_SEQ.currval,3);
     INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (5,PEDIDO_SEQ.currval,2);
-INSERT INTO PEDIDO (ID_SUCURSAL,ID_CLIENTE,ID,TIPO,FECHA_HORA,MONTO_TOTAL) VALUES (2,9,PEDIDO_SEQ.nextval,'PICK-UP',SYSDATE,0);
+INSERT INTO PEDIDO (ID_SUCURSAL,ID_CLIENTE,ID,TIPO,FECHA_HORA,MONTO_TOTAL) VALUES (2,9,PEDIDO_SEQ.nextval,'EN LOCAL',TO_DATE('07/11/2022 17:11','dd/MM/yyyy hh24:mi'),0);
     INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (8,PEDIDO_SEQ.currval,3);
     INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (4,PEDIDO_SEQ.currval,2);
-INSERT INTO PEDIDO (ID_SUCURSAL,ID_CLIENTE,ID,TIPO,FECHA_HORA,MONTO_TOTAL) VALUES (2,10,PEDIDO_SEQ.nextval,'EN LOCAL',SYSDATE,0);
+INSERT INTO PEDIDO (ID_SUCURSAL,ID_CLIENTE,ID,TIPO,FECHA_HORA,MONTO_TOTAL) VALUES (2,10,PEDIDO_SEQ.nextval,'EN LOCAL',TO_DATE('21/11/2022 17:27','dd/MM/yyyy hh24:mi'),0);
     INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (5,PEDIDO_SEQ.currval,2);
     INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (9,PEDIDO_SEQ.currval,1);
     INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (7,PEDIDO_SEQ.currval,1);
 
 --PEDIDOS SUCURSAL 3
-INSERT INTO PEDIDO (ID_SUCURSAL,ID_CLIENTE,ID,TIPO,FECHA_HORA,MONTO_TOTAL) VALUES (3,11,PEDIDO_SEQ.nextval,'EN LOCAL',SYSDATE,0);
+INSERT INTO PEDIDO (ID_SUCURSAL,ID_CLIENTE,ID,TIPO,FECHA_HORA,MONTO_TOTAL) VALUES (3,11,PEDIDO_SEQ.nextval,'EN LOCAL',TO_DATE('15/11/2022 14:23','dd/MM/yyyy hh24:mi'),0);
     INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (3,PEDIDO_SEQ.currval,2);
     INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (2,PEDIDO_SEQ.currval,3);
-INSERT INTO PEDIDO (ID_SUCURSAL,ID_CLIENTE,ID,TIPO,FECHA_HORA,MONTO_TOTAL) VALUES (3,12,PEDIDO_SEQ.nextval,'DELIVERY',SYSDATE,0);
+INSERT INTO PEDIDO (ID_SUCURSAL,ID_CLIENTE,ID,TIPO,FECHA_HORA,MONTO_TOTAL) VALUES (3,12,PEDIDO_SEQ.nextval,'DELIVERY',TO_DATE('16/11/2022 11:00','dd/MM/yyyy hh24:mi'),0);
     INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (3,PEDIDO_SEQ.currval,3);
     INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (4,PEDIDO_SEQ.currval,1);
-INSERT INTO PEDIDO (ID_SUCURSAL,ID_CLIENTE,ID,TIPO,FECHA_HORA,MONTO_TOTAL) VALUES (3,13,PEDIDO_SEQ.nextval,'EN LOCAL',SYSDATE,0);
+INSERT INTO PEDIDO (ID_SUCURSAL,ID_CLIENTE,ID,TIPO,FECHA_HORA,MONTO_TOTAL) VALUES (3,13,PEDIDO_SEQ.nextval,'EN LOCAL',TO_DATE('22/11/2022 18:40','dd/MM/yyyy hh24:mi'),0);
     INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (4,PEDIDO_SEQ.currval,3);
     INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (5,PEDIDO_SEQ.currval,2);
-INSERT INTO PEDIDO (ID_SUCURSAL,ID_CLIENTE,ID,TIPO,FECHA_HORA,MONTO_TOTAL) VALUES (3,14,PEDIDO_SEQ.nextval,'PICK-UP',SYSDATE,0);
+INSERT INTO PEDIDO (ID_SUCURSAL,ID_CLIENTE,ID,TIPO,FECHA_HORA,MONTO_TOTAL) VALUES (3,14,PEDIDO_SEQ.nextval,'PICK-UP',TO_DATE('13/11/2022 19:00','dd/MM/yyyy hh24:mi'),0);
     INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (8,PEDIDO_SEQ.currval,3);
     INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (4,PEDIDO_SEQ.currval,2);
-INSERT INTO PEDIDO (ID_SUCURSAL,ID_CLIENTE,ID,TIPO,FECHA_HORA,MONTO_TOTAL) VALUES (3,15,PEDIDO_SEQ.nextval,'EN LOCAL',SYSDATE,0);
+INSERT INTO PEDIDO (ID_SUCURSAL,ID_CLIENTE,ID,TIPO,FECHA_HORA,MONTO_TOTAL) VALUES (3,15,PEDIDO_SEQ.nextval,'EN LOCAL',TO_DATE('19/11/2022 16:52','dd/MM/yyyy hh24:mi'),0);
     INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (5,PEDIDO_SEQ.currval,2);
     INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (9,PEDIDO_SEQ.currval,1);
     INSERT INTO PLATO_PEDIDO (codigo_plato, id_pedido, cantidad) VALUES (7,PEDIDO_SEQ.currval,1);
@@ -403,6 +403,7 @@ VALUES (EMPLEADO_SEQ.nextval, FILE_TO_BLOB('Dwight.jpg'), '20-jan-1970', 'M',
 DECLARE
     cap NUMBER;
     porcentaje_random NUMBER;
+    um VARCHAR2(3);
 begin
     FOR I IN(SELECT *
              FROM PRODUCTO)
@@ -413,11 +414,21 @@ begin
         FROM PLATO_PRODUCTO PP, PRODUCTO PR, PLATO PL
         WHERE PP.id_producto=PR.ID AND PP.CODIGO_PLATO=PL.CODIGO AND PR.ID = I.ID;
 
+        SELECT UNIDAD_MEDIDA
+        INTO um
+        FROM PRODUCTO
+        WHERE ID=I.ID;
+
         FOR J IN (SELECT ID FROM SUCURSAL)
         LOOP
             SELECT ROUND(DBMS_RANDOM.VALUE(0,0.5),2) INTO porcentaje_random FROM DUAL;
-            INSERT INTO INVENTARIO (ID_PRODUCTO,ID_SUCURSAL,FECHA_INVENTARIO,CAPACIDAD_MAXIMA,CANTIDAD) VALUES
-            (I.ID,J.ID,CURRENT_DATE,cap,cap*porcentaje_random);
+            IF um='U' THEN
+                INSERT INTO INVENTARIO (ID_PRODUCTO,ID_SUCURSAL,FECHA_INVENTARIO,CAPACIDAD_MAXIMA,CANTIDAD) VALUES
+                (I.ID,J.ID,CURRENT_DATE,cap,ROUND(cap*porcentaje_random));
+            else
+                INSERT INTO INVENTARIO (ID_PRODUCTO,ID_SUCURSAL,FECHA_INVENTARIO,CAPACIDAD_MAXIMA,CANTIDAD) VALUES
+                (I.ID,J.ID,CURRENT_DATE,cap,cap*porcentaje_random);
+            end if;
         END LOOP;
     END LOOP;
 end;
@@ -445,43 +456,37 @@ BEGIN
     end loop;
 END;
 
-/*
-insert into promocion values(1,1,'2x1',CALENDARIO(to_date('2022-11-09','yyyy-mm-dd'),to_date('2022-11-12','yyyy-mm-dd')),0.5,'DESCUENTO',10);
-insert into promocion values(2,2,'Postre a 2$',CALENDARIO(to_date('2022-11-09','yyyy-mm-dd'),to_date('2022-11-15','yyyy-mm-dd')),2,'COMBO',10);
-insert into promocion values(3,3,'Postre a 1$',CALENDARIO(to_date('2022-11-01','yyyy-mm-dd'),to_date('2022-11-07','yyyy-mm-dd')),1,'COMBO',10);
-insert into promocion values(1,4,'Bebida a 1$',CALENDARIO(to_date('2022-11-01','yyyy-mm-dd'),to_date('2022-11-18','yyyy-mm-dd')),1,'COMBO',10);
-insert into promocion values(2,5,'Bebida a 0.5$',CALENDARIO(to_date('2022-10-01','yyyy-mm-dd'),to_date('2022-11-01','yyyy-mm-dd')),1,'COMBO',10);
-insert into promocion values(3,6,'Plato principal a 5$',CALENDARIO(to_date('2022-10-01','yyyy-mm-dd'),to_date('2022-10-10','yyyy-mm-dd')),5,'COMBO',10);
-insert into promocion values(1,7,'Descuento de 30%',CALENDARIO(to_date('2022-11-01','yyyy-mm-dd'),to_date('2022-12-01','yyyy-mm-dd')),0.30,'DESCUENTO',10);
-insert into promocion values(2,8,'Descuento de 10%',CALENDARIO(to_date('2022-10-30','yyyy-mm-dd'),to_date('2022-11-22','yyyy-mm-dd')),0.10,'DESCUENTO',10);
-insert into promocion values(3,9,'Descuento de 15%',CALENDARIO(to_date('2022-11-03','yyyy-mm-dd'),to_date('2022-12-03','yyyy-mm-dd')),0.15,'DESCUENTO',10);
-insert into promocion values(1,10,'Descuento de 50%',CALENDARIO(to_date('2022-11-20','yyyy-mm-dd'),to_date('2022-11-25','yyyy-mm-dd')),0.50,'DESCUENTO',10);
-insert into promocion values(2,11,'Descuento de 5%',CALENDARIO(to_date('2022-11-01','yyyy-mm-dd'),to_date('2022-12-01','yyyy-mm-dd')),0.05,'DESCUENTO',10);
-insert into promocion values(3,12,'Descuento de 20%',CALENDARIO(to_date('2022-11-20','yyyy-mm-dd'),to_date('2022-11-30','yyyy-mm-dd')),0.20,'DESCUENTO',10);
-insert into promocion values(1,13,'Descuento de 20%',CALENDARIO(to_date('2022-11-20','yyyy-mm-dd'),to_date('2022-11-30','yyyy-mm-dd')),0.20,'DESCUENTO',10);
-insert into promocion values(2,14,'Descuento de 20%',CALENDARIO(to_date('2022-11-20','yyyy-mm-dd'),to_date('2022-11-30','yyyy-mm-dd')),0.20,'DESCUENTO',10);
-insert into promocion values(3,15,'Descuento de 20%',CALENDARIO(to_date('2022-11-20','yyyy-mm-dd'),to_date('2022-11-30','yyyy-mm-dd')),0.20,'DESCUENTO',10);
-
---PLATO_PROMO
---BEBIDAS
-insert into plato_promocion values(7,6,10);
-insert into plato_promocion values(9,6,10);
-insert into plato_promocion values(10,6,10);
-insert into plato_promocion values(9,5,10);
-insert into plato_promocion values(10,5,10);
---POSTRES
-insert into plato_promocion values(14,3,10);
-insert into plato_promocion values(13,3,10);
-insert into plato_promocion values(15,3,10);
---PLATO PRINCIPAL
-insert into plato_promocion values(1,7,10);
-insert into plato_promocion values(2,7,10);
-insert into plato_promocion values(4,7,10);
-insert into plato_promocion values(1,11,10);
-insert into plato_promocion values(3,10,10);
-insert into plato_promocion values(5,15,10);
-insert into plato_promocion values(2,12,10);
-*/
+--PROMOCIONES
+insert into promocion values(1,PROMO_SEQ.nextval,'2x1',CALENDARIO(to_date('2022-11-09','yyyy-mm-dd'),to_date('2022-11-12','yyyy-mm-dd')),3,'COMBO',10);
+    INSERT INTO PLATO_PROMOCION VALUES (2,PROMO_SEQ.currval,1);
+insert into promocion values(2,PROMO_SEQ.nextval,'Postre a 2$',CALENDARIO(to_date('2022-11-09','yyyy-mm-dd'),to_date('2022-11-15','yyyy-mm-dd')),2,'COMBO',10);
+    INSERT INTO PLATO_PROMOCION VALUES (15,PROMO_SEQ.currval,1);
+insert into promocion values(3,PROMO_SEQ.nextval,'Postre a 1$',CALENDARIO(to_date('2022-11-01','yyyy-mm-dd'),to_date('2022-11-07','yyyy-mm-dd')),1,'COMBO',10);
+    INSERT INTO PLATO_PROMOCION VALUES (13,PROMO_SEQ.currval,1);
+insert into promocion values(1,PROMO_SEQ.nextval,'Bebida a 1$',CALENDARIO(to_date('2022-11-01','yyyy-mm-dd'),to_date('2022-11-18','yyyy-mm-dd')),1,'COMBO',10);
+    INSERT INTO PLATO_PROMOCION VALUES (7,PROMO_SEQ.currval,1);
+insert into promocion values(2,PROMO_SEQ.nextval,'Bebida a 0.5$',CALENDARIO(to_date('2022-10-01','yyyy-mm-dd'),to_date('2022-11-01','yyyy-mm-dd')),0.5,'COMBO',10);
+    INSERT INTO PLATO_PROMOCION VALUES (6,PROMO_SEQ.currval,1);
+insert into promocion values(3,PROMO_SEQ.nextval,'Plato principal a 5$',CALENDARIO(to_date('2022-10-01','yyyy-mm-dd'),to_date('2022-10-10','yyyy-mm-dd')),5,'COMBO',10);
+    INSERT INTO PLATO_PROMOCION VALUES (4,PROMO_SEQ.currval,1);
+insert into promocion values(1,PROMO_SEQ.nextval,'Descuento de 30%',CALENDARIO(to_date('2022-11-01','yyyy-mm-dd'),to_date('2022-12-01','yyyy-mm-dd')),7,'COMBO',10);
+    INSERT INTO PLATO_PROMOCION VALUES (1,PROMO_SEQ.currval,1);
+insert into promocion values(2,PROMO_SEQ.nextval,'Descuento de 10%',CALENDARIO(to_date('2022-10-30','yyyy-mm-dd'),to_date('2022-11-22','yyyy-mm-dd')),4.5,'COMBO',10);
+    INSERT INTO PLATO_PROMOCION VALUES (3,PROMO_SEQ.currval,1);
+insert into promocion values(3,PROMO_SEQ.nextval,'Descuento de 15%',CALENDARIO(to_date('2022-11-03','yyyy-mm-dd'),to_date('2022-12-03','yyyy-mm-dd')),8.5,'COMBO',10);
+    INSERT INTO PLATO_PROMOCION VALUES (1,PROMO_SEQ.currval,1);
+insert into promocion values(1,PROMO_SEQ.nextval,'Descuento de 50%',CALENDARIO(to_date('2022-11-20','yyyy-mm-dd'),to_date('2022-11-25','yyyy-mm-dd')),1.50,'COMBO',10);
+    INSERT INTO PLATO_PROMOCION VALUES (5,PROMO_SEQ.currval,1);
+insert into promocion values(2,PROMO_SEQ.nextval,'Descuento de 5%',CALENDARIO(to_date('2022-11-01','yyyy-mm-dd'),to_date('2022-12-01','yyyy-mm-dd')),5.7,'COMBO',10);
+    INSERT INTO PLATO_PROMOCION VALUES (4,PROMO_SEQ.currval,1);
+insert into promocion values(3,PROMO_SEQ.nextval,'Descuento de 20%',CALENDARIO(to_date('2022-11-20','yyyy-mm-dd'),to_date('2022-11-30','yyyy-mm-dd')),8,'COMBO',10);
+    INSERT INTO PLATO_PROMOCION VALUES (1,PROMO_SEQ.currval,1);
+insert into promocion values(1,PROMO_SEQ.nextval,'Descuento de 20%',CALENDARIO(to_date('2022-11-20','yyyy-mm-dd'),to_date('2022-11-30','yyyy-mm-dd')),1.6,'COMBO',10);
+    INSERT INTO PLATO_PROMOCION VALUES (11,PROMO_SEQ.currval,1);
+insert into promocion values(2,PROMO_SEQ.nextval,'Descuento de 20%',CALENDARIO(to_date('2022-11-20','yyyy-mm-dd'),to_date('2022-11-30','yyyy-mm-dd')),1.6,'COMBO',10);
+    INSERT INTO PLATO_PROMOCION VALUES (9,PROMO_SEQ.currval,1);
+insert into promocion values(3,PROMO_SEQ.nextval,'Descuento de 20%',CALENDARIO(to_date('2022-11-20','yyyy-mm-dd'),to_date('2022-11-30','yyyy-mm-dd')),4,'COMBO',10);
+    INSERT INTO PLATO_PROMOCION VALUES (3,PROMO_SEQ.currval,1);
 
 --ROLES
 INSERT INTO ROL (ID, NOMBRE, DESCRIPCION) VALUES (ROL_SEQ.nextval, 'Cocinero', 'Se encarga de preparar los platos');
@@ -496,7 +501,7 @@ insert into rol values(rol_seq.nextval,'Manager','Se encarga de manejar las rede
 insert into rol values(rol_seq.nextval,'Servicio al cliente','Coordina pedidos de tipo pick-up y delivery con el cliente');
 insert into rol values(rol_seq.nextval,'Delivery','Se encarga de trasladar los pedidos desde el local hasta la dirección del cliente');
 insert into rol values(rol_seq.nextval,'Pick-up','Se encarga de entregar los pedidos hechos por pick-up en el local');
-insert into rol values(rol_seq.nextval,'Lava-platos','Se encarga de la limpieza e higiene de los utencilios de cocina');insert into rol values(rol_seq.nextval,'Delivery','Se encarga de trasladar los pedidos desde el local hasta la dirección del cliente');
+insert into rol values(rol_seq.nextval,'Lava-platos','Se encarga de la limpieza e higiene de los utencilios de cocina');
 insert into rol values(rol_seq.nextval,'Limpieza','Se encarga de la higiene y limpieza del local');
 insert into rol values(rol_seq.nextval,'Cajero','Se encarga de cobrar las cuentas a los clientes');
 insert into rol values(rol_seq.nextval,'Contador','Se encarga de las finanzas del local');
@@ -511,14 +516,14 @@ VALUES (CONTRATO_SEQ.nextval, CALENDARIO('18-jan-2022', null), null,150, 2, 2, 1
 INSERT INTO CONTRATO (ID, FECHAS, MOTIVO_EGRESO,SALARIO, ID_ROL, ID_EMPLEADO, ID_SUCURSAL)
 VALUES (CONTRATO_SEQ.nextval, CALENDARIO('1-mar-2022', null), null,400, 3, 3, 1);
 insert into contrato values(CONTRATO_SEQ.nextval,CALENDARIO(to_date('2022-09-08','yyyy-mm-dd'),null),'',150,1,4,2);
-insert into contrato values(CONTRATO_SEQ.nextval,CALENDARIO(to_date('2022-01-01','yyyy-mm-dd'),to_date('2023-01-01','yyyy-mm-dd')),'',80,5,5,2);
-insert into contrato values(CONTRATO_SEQ.nextval,CALENDARIO(to_date('2022-01-01','yyyy-mm-dd'),to_date('2023-01-01','yyyy-mm-dd')),'',50,6,6,3);
-insert into contrato values(CONTRATO_SEQ.nextval,CALENDARIO(to_date('2022-01-01','yyyy-mm-dd'),to_date('2023-01-01','yyyy-mm-dd')),'',50,7,7,1);
-insert into contrato values(CONTRATO_SEQ.nextval,CALENDARIO(to_date('2022-01-01','yyyy-mm-dd'),to_date('2023-01-01','yyyy-mm-dd')),'',90,8,8,2);
-insert into contrato values(CONTRATO_SEQ.nextval,CALENDARIO(to_date('2022-01-01','yyyy-mm-dd'),to_date('2023-01-01','yyyy-mm-dd')),'',500,3,9,2);
-insert into contrato values(CONTRATO_SEQ.nextval,CALENDARIO(to_date('2022-01-01','yyyy-mm-dd'),to_date('2023-01-01','yyyy-mm-dd')),'',70,10,10,1);
-insert into contrato values(CONTRATO_SEQ.nextval,CALENDARIO(to_date('2022-01-01','yyyy-mm-dd'),to_date('2023-01-01','yyyy-mm-dd')),'',60,11,11,2);
-insert into contrato values(CONTRATO_SEQ.nextval,CALENDARIO(to_date('2022-01-01','yyyy-mm-dd'),to_date('2023-01-01','yyyy-mm-dd')),'',400,3,14,3);
+insert into contrato values(CONTRATO_SEQ.nextval,CALENDARIO(to_date('2022-01-01','yyyy-mm-dd'),null),'',80,5,5,2);
+insert into contrato values(CONTRATO_SEQ.nextval,CALENDARIO(to_date('2022-01-01','yyyy-mm-dd'),null),'',50,6,6,3);
+insert into contrato values(CONTRATO_SEQ.nextval,CALENDARIO(to_date('2022-01-01','yyyy-mm-dd'),null),'',50,7,7,1);
+insert into contrato values(CONTRATO_SEQ.nextval,CALENDARIO(to_date('2022-01-01','yyyy-mm-dd'),null),'',90,8,8,2);
+insert into contrato values(CONTRATO_SEQ.nextval,CALENDARIO(to_date('2022-01-01','yyyy-mm-dd'),null),'',500,3,9,2);
+insert into contrato values(CONTRATO_SEQ.nextval,CALENDARIO(to_date('2022-01-01','yyyy-mm-dd'),null),'',70,10,10,1);
+insert into contrato values(CONTRATO_SEQ.nextval,CALENDARIO(to_date('2022-01-01','yyyy-mm-dd'),null),'',60,11,11,2);
+insert into contrato values(CONTRATO_SEQ.nextval,CALENDARIO(to_date('2022-01-01','yyyy-mm-dd'),null),'',400,3,14,3);
 
 --Calificaciones sucursal 1
 INSERT INTO CALIFICACION (ID_PEDIDO, CODIGO, PUNTAJE, OBSERVACIONES) VALUES (1, CALIFICACION_SEQ.nextval, 4, 'Buen servicio');
@@ -571,6 +576,7 @@ DECLARE
     fecha_fin    NUMBER;
     random       NUMBER;
     aux          NUMBER;
+    um           VARCHAR2(3);
 BEGIN
     fecha_inicio := to_number(to_char(to_date('2022-11-15', 'yyyy-MM-dd'), 'j'));
     fecha_fin := to_number(to_char(to_date('2022-11-20', 'yyyy-MM-dd'), 'j'));
@@ -581,9 +587,19 @@ BEGIN
                     FOR K IN (SELECT * FROM INVENTARIO WHERE ID_SUCURSAL = I.ID)
                         LOOP
                             SELECT ROUND(DBMS_RANDOM.VALUE(0, 0.5),2) INTO random FROM DUAL;
-                            UPDATE INVENTARIO
-                            SET CANTIDAD=CAPACIDAD_MAXIMA * random
-                            WHERE ID_SUCURSAL = K.ID_SUCURSAL AND ID_PRODUCTO = K.ID_PRODUCTO;
+                            SELECT UNIDAD_MEDIDA
+                            INTO um
+                            FROM PRODUCTO
+                            WHERE ID=K.ID_PRODUCTO;
+                            IF um='U' THEN
+                                UPDATE INVENTARIO
+                                SET CANTIDAD=ROUND(CAPACIDAD_MAXIMA * random)
+                                WHERE ID_SUCURSAL = K.ID_SUCURSAL AND ID_PRODUCTO = K.ID_PRODUCTO;
+                            else
+                                UPDATE INVENTARIO
+                                SET CANTIDAD=CAPACIDAD_MAXIMA * random
+                                WHERE ID_SUCURSAL = K.ID_SUCURSAL AND ID_PRODUCTO = K.ID_PRODUCTO;
+                            end if;
                         end loop;
                     aux := SIMULACION2_PKG.SELECCIONAR_PLATOS((to_date(J, 'j')), I.ID);
                 end loop;

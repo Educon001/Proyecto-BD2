@@ -123,7 +123,3 @@ CREATE OR REPLACE PACKAGE BODY simulacion5_pkg IS
                              NOMBRE_PLATO(plato_seleccionado));
     END;
 END;
-
-BEGIN
-    simulacion5_pkg.simulacion5;
-end;

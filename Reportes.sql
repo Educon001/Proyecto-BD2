@@ -49,14 +49,16 @@ BEGIN
 END;
 
 --2. Reporte de menú del día
-CREATE OR REPLACE PROCEDURE REPORTE2(fecha_p DATE,c2 OUT sys_refcursor) is
- BEGIN
-     OPEN c2 FOR
-         SELECT M.fecha, P.categoria, P.nombre, P.foto, P.descripcion, P.precio_unitario
-         FROM menu_dia M
-            join PLATO P on P.CODIGO = M.CODIGO_PLATO
-         WHERE CAST(to_date(M.fecha,'yyyy-mm-dd') as DATE)=CAST(to_date(fecha_p,'yyyy-mm-dd') AS DATE);
- END;
+CREATE OR REPLACE PROCEDURE REPORTE2(sucursal_p SUCURSAL.NOMBRE%type, fecha_p DATE, c2 OUT sys_refcursor) is
+BEGIN
+    OPEN c2 FOR
+        SELECT M.fecha, P.categoria, P.nombre, P.foto, P.descripcion, P.precio_unitario
+        FROM menu_dia M
+                 join PLATO P on P.CODIGO = M.CODIGO_PLATO
+                 join SUCURSAL S on S.ID = M.ID_SUCURSAL
+        WHERE CAST(to_date(M.fecha, 'yyyy-mm-dd') as DATE) = CAST(to_date(fecha_p, 'yyyy-mm-dd') AS DATE)
+          AND UPPER(S.NOMBRE) LIKE UPPER('%' || sucursal_p || '%');
+END;
 
 --3. Reporte de histórico de promociones
 CREATE OR REPLACE PROCEDURE REPORTE3(fecha_inicio DATE, fecha_fin DATE, precio_menor FLOAT,
@@ -81,8 +83,9 @@ BEGIN
                    1 - ((promo.precio_descuento * 1) / pla.precio_unitario),--descuento
                    pla.precio_unitario,                                     --precio unitario
                    promo.precio_descuento                                   --precio final
-            FROM promocion promo,
-                 (plato pla inner join plato_promocion pla_promo on pla.codigo = pla_promo.codigo_plato)
+            FROM promocion promo
+                join plato_promocion pla_promo on promo.ID = pla_promo.ID_PROMOCION
+                join plato pla on pla.codigo = pla_promo.codigo_plato
             where ((promo.INICIO_FIN.FECHA_INICIO BETWEEN FECHA_INICIO AND FECHA_FIN) OR
                    (promo.INICIO_FIN.FECHA_FIN BETWEEN FECHA_INICIO AND FECHA_FIN)
                 OR (promo.INICIO_FIN.FECHA_INICIO <= fecha_inicio AND (promo.INICIO_FIN.FECHA_FIN >= fecha_fin OR promo.INICIO_FIN.FECHA_FIN IS NULL)))
