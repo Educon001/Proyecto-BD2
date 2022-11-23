@@ -80,3 +80,29 @@ BEGIN
             end loop;
     end if;
 end;
+
+-- TRIGGER INSERCION DE RESERVA (GENERAR PAGO DEL ABONO INICIAL DESPUES DE REALIZAR RESERVA)
+CREATE OR REPLACE TRIGGER insercion_reserva
+AFTER INSERT ON RESERVA FOR EACH ROW
+DECLARE
+BEGIN
+    insert into PAGO_RESERVA VALUES (PAGO_RESERVA_SEQ.nextval,:new.ID,:new.abono_inicial,escoger_tipo_pago());
+end;
+
+CREATE OR REPLACE TRIGGER insercion_pago_reserva
+AFTER INSERT ON PAGO_RESERVA FOR EACH ROW
+DECLARE
+BEGIN
+    DBMS_OUTPUT.PUT_LINE(' ');
+    DBMS_OUTPUT.PUT_LINE('PAGO DE RESERVA REGISTRADO');
+    DBMS_OUTPUT.PUT_LINE('__________________________');
+    DBMS_OUTPUT.PUT_LINE('N° de reserva: '||:new.ID_RESERVA);
+    DBMS_OUTPUT.PUT_LINE('Monto: $'||:new.monto);
+    DBMS_OUTPUT.PUT_LINE('Tipo de pago: '||:new.TIPO_PAGO);
+end;
+
+CREATE OR REPLACE TRIGGER insercion_pago_pedido
+AFTER INSERT ON PAGO_PEDIDO FOR EACH ROW
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('N° FACTURA: '||:new.ID_PEDIDO||'     ||     Monto:'||:new.MONTO||'$     ||     Método de pago: '||:new.TIPO_PAGO);
+END;

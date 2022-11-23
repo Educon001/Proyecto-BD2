@@ -312,3 +312,5 @@ CREATE SEQUENCE egreso_seq;
 CREATE SEQUENCE cliente_seq;
 CREATE SEQUENCE pago_seq;
 CREATE SEQUENCE promo_seq;
+CREATE SEQUENCE reserva_seq;
+CREATE SEQUENCE pago_reserva_seq;

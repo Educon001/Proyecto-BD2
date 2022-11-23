@@ -74,3 +74,34 @@ BEGIN
     WHERE ID=sucursal_id;
     RETURN nombre_sucursal;
 end;
+
+-- FUNCION ESCOGE ALEATORIAMENTE TIPO DE PAGO ALEATORIO
+CREATE OR REPLACE FUNCTION escoger_tipo_pago
+RETURN PAGO_RESERVA.TIPO_PAGO%TYPE IS
+num_tipo NUMBER;
+begin
+    select round(dbms_random.value(1,7)) into num_tipo from dual;
+
+    IF num_tipo = 1 THEN
+        RETURN 'EFECTIVO';
+    end if;
+    IF num_tipo = 2 THEN
+        RETURN 'POS';
+    end if;
+   IF num_tipo = 3 THEN
+        RETURN 'ZELLE';
+    end if;
+    IF num_tipo = 4 THEN
+        RETURN 'PIPOL PAY';
+    end if;
+    IF num_tipo = 5 THEN
+        RETURN 'PAYPAL';
+    end if;
+    IF num_tipo = 6 THEN
+        RETURN 'ZINLI';
+    end if;
+    IF num_tipo = 7 THEN
+        RETURN 'CRIPTOMONEDAS';
+    end if;
+    RETURN 'a';
+end;
