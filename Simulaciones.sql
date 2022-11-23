@@ -35,15 +35,10 @@ end;
 
 --Simulación 8: Pedido de una promoción
 BEGIN
-
+    SIMULACION_8();
 end;
 
 --Simulación 9: Se acaba un producto
 BEGIN
     SIMULACION9_PKG.SIMULACION9();
 end;
-
-SELECT * FROM PEDIDO;
-SELECT * FROM CONTRATO;
-
-COMMIT;
