@@ -222,10 +222,42 @@ BEGIN
                to_char(I.FECHA_INVENTARIO, 'fmMonth YYYY', 'NLS_DATE_LANGUAGE=Spanish') as fecha_inv,
                P.DESCRIPCION,
                P.FOTO,
-               I.CANTIDAD || CASE WHEN (P.UNIDAD_MEDIDA='U') THEN ' Unidades' ELSE P.UNIDAD_MEDIDA END as Cant
+               to_char(I.CANTIDAD, 'fm990d00') || CASE WHEN (P.UNIDAD_MEDIDA='U') THEN ' Unidades' ELSE P.UNIDAD_MEDIDA END as Cant
         FROM SUCURSAL S
                  JOIN INVENTARIO I on S.ID = I.ID_SUCURSAL
                  JOIN PRODUCTO P on P.ID = I.ID_PRODUCTO
-        WHERE S.NOMBRE = sucursal
-          AND to_char(I.FECHA_INVENTARIO, 'MM-YYYY') = to_char(fecha, 'MM-YYYY');
+        WHERE UPPER(S.NOMBRE) LIKE '%' || UPPER(sucursal) || '%'
+          AND to_char(I.FECHA_INVENTARIO, 'MM-YYYY') LIKE '%' || to_char(fecha, 'MM-YYYY') || '%';
+end;
+
+--8. Reporte de ingresos y egresos por sucursal de restaurante
+CREATE OR REPLACE FUNCTION total_ingresos(sucursal_id SUCURSAL.id%type, fecha DATE) RETURN NUMBER IS
+    total NUMBER;
+BEGIN
+    SELECT SUM(MONTO_TOTAL)
+    INTO total
+    FROM PEDIDO
+    WHERE ID_SUCURSAL=sucursal_id AND to_char(FECHA_HORA, 'MM-YYYY') = to_char(fecha, 'MM-YYYY');
+    RETURN total;
+end;
+
+CREATE OR REPLACE FUNCTION total_egresos(sucursal_id SUCURSAL.id%type, fecha_parametro DATE) RETURN NUMBER IS
+    total NUMBER;
+BEGIN
+    SELECT SUM(MONTO)
+    INTO total
+    FROM EGRESO
+    WHERE ID_SUCURSAL=sucursal_id AND to_char(FECHA, 'MM-YYYY') = to_char(fecha_parametro, 'MM-YYYY');
+    RETURN total;
+end;
+
+CREATE OR REPLACE PROCEDURE reporte8(sucursal SUCURSAL.nombre%type, fecha_parametro DATE, c8 OUT SYS_REFCURSOR) IS
+BEGIN
+    OPEN c8 FOR
+        SELECT S.NOMBRE,
+               to_char(to_date('01-nov-2022'), 'fmMonth YYYY', 'NLS_DATE_LANGUAGE=Spanish') as fecha,
+               total_ingresos(S.ID, to_date('01-nov-2022')) as ingresos,
+               total_egresos(S.ID, to_date('01-nov-2022')) as egresos
+        FROM SUCURSAL S
+        WHERE UPPER(S.NOMBRE) LIKE '%' || UPPER(sucursal) || '%';
 end;
