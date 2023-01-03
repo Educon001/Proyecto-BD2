@@ -213,3 +213,19 @@ BEGIN
               ORDER BY hora) t2 on t1.dia = t2.dia;
     end if;
 END;
+
+--7. Reporte de control de inventario de mercancía
+CREATE OR REPLACE PROCEDURE reporte7(sucursal SUCURSAL.nombre%type, fecha DATE, c7 OUT SYS_REFCURSOR) IS
+BEGIN
+    OPEN c7 FOR
+        SELECT S.NOMBRE,
+               to_char(I.FECHA_INVENTARIO, 'fmMonth YYYY', 'NLS_DATE_LANGUAGE=Spanish') as fecha_inv,
+               P.DESCRIPCION,
+               P.FOTO,
+               I.CANTIDAD || CASE WHEN (P.UNIDAD_MEDIDA='U') THEN ' Unidades' ELSE P.UNIDAD_MEDIDA END as Cant
+        FROM SUCURSAL S
+                 JOIN INVENTARIO I on S.ID = I.ID_SUCURSAL
+                 JOIN PRODUCTO P on P.ID = I.ID_PRODUCTO
+        WHERE S.NOMBRE = sucursal
+          AND to_char(I.FECHA_INVENTARIO, 'MM-YYYY') = to_char(fecha, 'MM-YYYY');
+end;

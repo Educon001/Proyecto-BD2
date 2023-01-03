@@ -424,6 +424,10 @@ begin
         FROM PLATO_PRODUCTO PP, PRODUCTO PR, PLATO PL
         WHERE PP.id_producto=PR.ID AND PP.CODIGO_PLATO=PL.CODIGO AND PR.ID = I.ID;
 
+        IF cap IS null THEN
+            cap:= 10;
+        END IF;
+
         SELECT UNIDAD_MEDIDA
         INTO um
         FROM PRODUCTO
