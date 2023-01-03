@@ -255,9 +255,9 @@ CREATE OR REPLACE PROCEDURE reporte8(sucursal SUCURSAL.nombre%type, fecha_parame
 BEGIN
     OPEN c8 FOR
         SELECT S.NOMBRE,
-               to_char(to_date('01-nov-2022'), 'fmMonth YYYY', 'NLS_DATE_LANGUAGE=Spanish') as fecha,
-               total_ingresos(S.ID, to_date('01-nov-2022')) as ingresos,
-               total_egresos(S.ID, to_date('01-nov-2022')) as egresos
+               to_char(fecha_parametro, 'fmMonth YYYY', 'NLS_DATE_LANGUAGE=Spanish') as fecha,
+               total_ingresos(S.ID, fecha_parametro) as ingresos,
+               total_egresos(S.ID, fecha_parametro) as egresos
         FROM SUCURSAL S
         WHERE UPPER(S.NOMBRE) LIKE '%' || UPPER(sucursal) || '%';
 end;
