@@ -238,6 +238,9 @@ BEGIN
     INTO total
     FROM PEDIDO
     WHERE ID_SUCURSAL=sucursal_id AND to_char(FECHA_HORA, 'MM-YYYY') = to_char(fecha, 'MM-YYYY');
+    IF total IS NULL THEN
+        total:=0;
+    end if;
     RETURN total;
 end;
 
@@ -248,16 +251,24 @@ BEGIN
     INTO total
     FROM EGRESO
     WHERE ID_SUCURSAL=sucursal_id AND to_char(FECHA, 'MM-YYYY') = to_char(fecha_parametro, 'MM-YYYY');
+    if total IS NULL THEN
+        total:=0;
+    end if;
     RETURN total;
 end;
 
 CREATE OR REPLACE PROCEDURE reporte8(sucursal SUCURSAL.nombre%type, fecha_parametro DATE, c8 OUT SYS_REFCURSOR) IS
 BEGIN
-    OPEN c8 FOR
+    if fecha_parametro IS NOT NULL THEN
+        OPEN c8 FOR
         SELECT S.NOMBRE,
                to_char(fecha_parametro, 'fmMonth YYYY', 'NLS_DATE_LANGUAGE=Spanish') as fecha,
                total_ingresos(S.ID, fecha_parametro) as ingresos,
                total_egresos(S.ID, fecha_parametro) as egresos
         FROM SUCURSAL S
         WHERE UPPER(S.NOMBRE) LIKE '%' || UPPER(sucursal) || '%';
+    end if;
 end;
+
+SELECT TOTAL_INGRESOS(1, '01-nov-2022') FROM DUAL;
+SELECT TOTAL_EGRESOS(1,'01-nov-2022') FROM DUAL
