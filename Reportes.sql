@@ -219,10 +219,11 @@ CREATE OR REPLACE PROCEDURE reporte7(sucursal SUCURSAL.nombre%type, fecha DATE, 
 BEGIN
     OPEN c7 FOR
         SELECT S.NOMBRE,
-               to_char(I.FECHA_INVENTARIO, 'fmMonth YYYY', 'NLS_DATE_LANGUAGE=Spanish') as fecha_inv,
+               to_char(I.FECHA_INVENTARIO, 'fmMonth YYYY', 'NLS_DATE_LANGUAGE=Spanish')    as fecha_inv,
                P.DESCRIPCION,
                P.FOTO,
-               to_char(I.CANTIDAD, 'fm990d00') || CASE WHEN (P.UNIDAD_MEDIDA='U') THEN ' Unidades' ELSE P.UNIDAD_MEDIDA END as Cant
+               to_char(I.CANTIDAD, 'fm990d00') ||
+               CASE WHEN (P.UNIDAD_MEDIDA = 'U') THEN ' Unidades' ELSE P.UNIDAD_MEDIDA END as Cant
         FROM SUCURSAL S
                  JOIN INVENTARIO I on S.ID = I.ID_SUCURSAL
                  JOIN PRODUCTO P on P.ID = I.ID_PRODUCTO
@@ -237,9 +238,10 @@ BEGIN
     SELECT SUM(MONTO_TOTAL)
     INTO total
     FROM PEDIDO
-    WHERE ID_SUCURSAL=sucursal_id AND to_char(FECHA_HORA, 'MM-YYYY') = to_char(fecha, 'MM-YYYY');
+    WHERE ID_SUCURSAL = sucursal_id
+      AND to_char(FECHA_HORA, 'MM-YYYY') = to_char(fecha, 'MM-YYYY');
     IF total IS NULL THEN
-        total:=0;
+        total := 0;
     end if;
     RETURN total;
 end;
@@ -250,9 +252,10 @@ BEGIN
     SELECT SUM(MONTO)
     INTO total
     FROM EGRESO
-    WHERE ID_SUCURSAL=sucursal_id AND to_char(FECHA, 'MM-YYYY') = to_char(fecha_parametro, 'MM-YYYY');
+    WHERE ID_SUCURSAL = sucursal_id
+      AND to_char(FECHA, 'MM-YYYY') = to_char(fecha_parametro, 'MM-YYYY');
     if total IS NULL THEN
-        total:=0;
+        total := 0;
     end if;
     RETURN total;
 end;
@@ -261,14 +264,34 @@ CREATE OR REPLACE PROCEDURE reporte8(sucursal SUCURSAL.nombre%type, fecha_parame
 BEGIN
     if fecha_parametro IS NOT NULL THEN
         OPEN c8 FOR
-        SELECT S.NOMBRE,
-               to_char(fecha_parametro, 'fmMonth YYYY', 'NLS_DATE_LANGUAGE=Spanish') as fecha,
-               total_ingresos(S.ID, fecha_parametro) as ingresos,
-               total_egresos(S.ID, fecha_parametro) as egresos
-        FROM SUCURSAL S
-        WHERE UPPER(S.NOMBRE) LIKE '%' || UPPER(sucursal) || '%';
+            SELECT S.NOMBRE,
+                   to_char(fecha_parametro, 'fmMonth YYYY', 'NLS_DATE_LANGUAGE=Spanish') as fecha,
+                   total_ingresos(S.ID, fecha_parametro)                                 as ingresos,
+                   total_egresos(S.ID, fecha_parametro)                                  as egresos
+            FROM SUCURSAL S
+            WHERE UPPER(S.NOMBRE) LIKE '%' || UPPER(sucursal) || '%';
     end if;
 end;
 
-SELECT TOTAL_INGRESOS(1, '01-nov-2022') FROM DUAL;
-SELECT TOTAL_EGRESOS(1,'01-nov-2022') FROM DUAL
+--11. Reporte de control de despacho vía Delivery
+CREATE OR REPLACE PROCEDURE reporte11(destino VARCHAR2, tipo_comida PLATO.CATEGORIA%type, c11 OUT SYS_REFCURSOR) IS
+BEGIN
+    OPEN c11 FOR
+        SELECT S.NOMBRE                                                        as sucursal,
+               PL.CATEGORIA                                                    as tipo_plato,
+               PL.NOMBRE                                                       as plato,
+               PL.FOTO,
+               SUBSTR(P.TIPO, 1, 1) || LOWER(SUBSTR(P.TIPO, 2))                as tipo_pedido,
+               C.DATOS.PRIMER_NOMBRE                                           as nombre_cliente,
+               C.DATOS.PRIMER_APELLIDO                                         as apellido_cliente,
+               '0' || SUBSTR(C.TELEFONO, 1, 3) || '-' || SUBSTR(C.TELEFONO, 4) as telefono,
+               C.DIRECCION.DESCRIPCION                                         as direccion
+        FROM PEDIDO P
+                 join SUCURSAL S on S.ID = P.ID_SUCURSAL
+                 join CLIENTE C on C.ID = P.ID_CLIENTE
+                 join PLATO_PEDIDO PP on P.ID = PP.ID_PEDIDO
+                 join PLATO PL on PL.CODIGO = PP.CODIGO_PLATO
+        WHERE P.TIPO = 'DELIVERY'
+          AND UPPER(PL.CATEGORIA) LIKE '%' || UPPER(tipo_comida) || '%'
+          AND UPPER(C.DIRECCION.DESCRIPCION) LIKE '%' || UPPER(destino) || '%';
+end;
