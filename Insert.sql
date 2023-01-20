@@ -162,76 +162,76 @@ end;
 
 --PRODUCTOS
 -- INGREDIENTES PARA PIZZA
-INSERT INTO PRODUCTO (ID, DESCRIPCION, UNIDAD_MEDIDA)
-VALUES (PRODUCTO_SEQ.nextval,'Masa','Kg');
-INSERT INTO PRODUCTO (ID, DESCRIPCION, UNIDAD_MEDIDA)
-VALUES (PRODUCTO_SEQ.nextval,'Tomate','Kg');
-INSERT INTO PRODUCTO (ID, DESCRIPCION, UNIDAD_MEDIDA)
-VALUES (PRODUCTO_SEQ.nextval,'Queso mozarella','Kg');
+INSERT INTO PRODUCTO (ID, DESCRIPCION, FOTO, UNIDAD_MEDIDA)
+VALUES (PRODUCTO_SEQ.nextval,'Masa', FILE_TO_BLOB('Masa.jpg'), 'Kg');
+INSERT INTO PRODUCTO (ID, DESCRIPCION, FOTO, UNIDAD_MEDIDA)
+VALUES (PRODUCTO_SEQ.nextval,'Tomate', FILE_TO_BLOB('Tomate.jpg'), 'Kg');
+INSERT INTO PRODUCTO (ID, DESCRIPCION, FOTO, UNIDAD_MEDIDA)
+VALUES (PRODUCTO_SEQ.nextval,'Queso mozarella', FILE_TO_BLOB('Mozarella.jpg'), 'Kg');
 
 -- INGREDIENTES PARA HAMBURGUESA
-INSERT INTO PRODUCTO (ID, DESCRIPCION, UNIDAD_MEDIDA)
-VALUES (PRODUCTO_SEQ.nextval,'Pan','U');
-INSERT INTO PRODUCTO (ID, DESCRIPCION, UNIDAD_MEDIDA)
-VALUES (PRODUCTO_SEQ.nextval,'Carne molida','Kg');
-INSERT INTO PRODUCTO (ID, DESCRIPCION, UNIDAD_MEDIDA)
-VALUES (PRODUCTO_SEQ.nextval,'Queso americano','Kg');
-INSERT INTO PRODUCTO (ID, DESCRIPCION, UNIDAD_MEDIDA)
-VALUES (PRODUCTO_SEQ.nextval,'Lechuga','Kg');
-INSERT INTO PRODUCTO (ID, DESCRIPCION, UNIDAD_MEDIDA)
-VALUES (PRODUCTO_SEQ.nextval,'Salsa','L');
+INSERT INTO PRODUCTO (ID, DESCRIPCION, FOTO, UNIDAD_MEDIDA)
+VALUES (PRODUCTO_SEQ.nextval,'Pan', FILE_TO_BLOB('Pan.jpg'), 'U');
+INSERT INTO PRODUCTO (ID, DESCRIPCION, FOTO, UNIDAD_MEDIDA)
+VALUES (PRODUCTO_SEQ.nextval,'Carne molida', FILE_TO_BLOB('Molida.jpg'), 'Kg');
+INSERT INTO PRODUCTO (ID, DESCRIPCION, FOTO, UNIDAD_MEDIDA)
+VALUES (PRODUCTO_SEQ.nextval,'Queso americano', FILE_TO_BLOB('Queso_americano.jpg'), 'Kg');
+INSERT INTO PRODUCTO (ID, DESCRIPCION, FOTO, UNIDAD_MEDIDA)
+VALUES (PRODUCTO_SEQ.nextval,'Lechuga', FILE_TO_BLOB('Lechuga.jpg'), 'Kg');
+INSERT INTO PRODUCTO (ID, DESCRIPCION, FOTO, UNIDAD_MEDIDA)
+VALUES (PRODUCTO_SEQ.nextval,'Salsa', FILE_TO_BLOB('Salsa.jpg'), 'L');
 
 -- INGREDIENTES PASTA
-INSERT INTO PRODUCTO (ID, DESCRIPCION, UNIDAD_MEDIDA)
-VALUES (PRODUCTO_SEQ.nextval,'Spaghetti','Kg');
+INSERT INTO PRODUCTO (ID, DESCRIPCION, FOTO, UNIDAD_MEDIDA)
+VALUES (PRODUCTO_SEQ.nextval,'Spaghetti', FILE_TO_BLOB('Spaghetti.jpg'), 'Kg');
 
 -- INGREDIENTES PASTA
-INSERT INTO PRODUCTO (ID, DESCRIPCION, UNIDAD_MEDIDA)
-VALUES (PRODUCTO_SEQ.nextval,'Jamon','Kg');
+INSERT INTO PRODUCTO (ID, DESCRIPCION, FOTO, UNIDAD_MEDIDA)
+VALUES (PRODUCTO_SEQ.nextval,'Jamon', FILE_TO_BLOB('Jamon.jpg'), 'Kg');
 
 -- BEBIDAS
-INSERT INTO PRODUCTO (ID, DESCRIPCION, UNIDAD_MEDIDA)
-VALUES (PRODUCTO_SEQ.nextval,'Agua minalba 600ml','U');
+INSERT INTO PRODUCTO (ID, DESCRIPCION, FOTO, UNIDAD_MEDIDA)
+VALUES (PRODUCTO_SEQ.nextval,'Agua minalba 600ml', FILE_TO_BLOB('agua.jpg'), 'U');
 
-INSERT INTO PRODUCTO (ID, DESCRIPCION, UNIDAD_MEDIDA)
-VALUES (PRODUCTO_SEQ.nextval,'Coca-Cola Lata 355ml','U');
+INSERT INTO PRODUCTO (ID, DESCRIPCION, FOTO, UNIDAD_MEDIDA)
+VALUES (PRODUCTO_SEQ.nextval,'Coca-Cola Lata 355ml', FILE_TO_BLOB('coca-cola.jpg'), 'U');
 
-INSERT INTO PRODUCTO (ID, DESCRIPCION, UNIDAD_MEDIDA)
-VALUES (PRODUCTO_SEQ.nextval,'Cerveza Polar botella 222ml','U');
+INSERT INTO PRODUCTO (ID, DESCRIPCION, FOTO, UNIDAD_MEDIDA)
+VALUES (PRODUCTO_SEQ.nextval,'Cerveza Polar botella 222ml', FILE_TO_BLOB('cerveza.jpg'), 'U');
 
-INSERT INTO PRODUCTO (ID, DESCRIPCION, UNIDAD_MEDIDA)
-VALUES (PRODUCTO_SEQ.nextval,'Margarita','U');
+INSERT INTO PRODUCTO (ID, DESCRIPCION, FOTO, UNIDAD_MEDIDA)
+VALUES (PRODUCTO_SEQ.nextval,'Margarita', FILE_TO_BLOB('Margarita_mix.jpg'), 'U');
 
-INSERT INTO PRODUCTO (ID, DESCRIPCION, UNIDAD_MEDIDA)
-VALUES (PRODUCTO_SEQ.nextval,'Fresa','Kg');
+INSERT INTO PRODUCTO (ID, DESCRIPCION, FOTO, UNIDAD_MEDIDA)
+VALUES (PRODUCTO_SEQ.nextval,'Fresa', FILE_TO_BLOB('Fresa.jpg'), 'Kg');
 
 -- POSTRES
 -- TRES LECHES
-INSERT INTO PRODUCTO (ID, DESCRIPCION, UNIDAD_MEDIDA)
-VALUES (PRODUCTO_SEQ.nextval,'Leche condensada','L');
-INSERT INTO PRODUCTO (ID, DESCRIPCION, UNIDAD_MEDIDA)
-VALUES (PRODUCTO_SEQ.nextval,'Leche entera','L');
-INSERT INTO PRODUCTO (ID, DESCRIPCION, UNIDAD_MEDIDA)
-VALUES (PRODUCTO_SEQ.nextval,'Leche evaporada','L');
-INSERT INTO PRODUCTO (ID, DESCRIPCION, UNIDAD_MEDIDA)
-VALUES (PRODUCTO_SEQ.nextval,'Huevo','U');
+INSERT INTO PRODUCTO (ID, DESCRIPCION, FOTO, UNIDAD_MEDIDA)
+VALUES (PRODUCTO_SEQ.nextval,'Leche condensada', FILE_TO_BLOB('Leche_condensada.jpg'), 'L');
+INSERT INTO PRODUCTO (ID, DESCRIPCION, FOTO, UNIDAD_MEDIDA)
+VALUES (PRODUCTO_SEQ.nextval,'Leche entera', FILE_TO_BLOB('Leche_entera.jpg'), 'L');
+INSERT INTO PRODUCTO (ID, DESCRIPCION, FOTO, UNIDAD_MEDIDA)
+VALUES (PRODUCTO_SEQ.nextval,'Leche evaporada', FILE_TO_BLOB('Leche_evaporada.jpg'), 'L');
+INSERT INTO PRODUCTO (ID, DESCRIPCION, FOTO, UNIDAD_MEDIDA)
+VALUES (PRODUCTO_SEQ.nextval,'Huevo', FILE_TO_BLOB('Huevo.jpg'), 'U');
 -- Helado de mantecado
-INSERT INTO PRODUCTO (ID, DESCRIPCION, UNIDAD_MEDIDA)
-VALUES (PRODUCTO_SEQ.nextval,'Helado mantecado','L');
+INSERT INTO PRODUCTO (ID, DESCRIPCION, FOTO, UNIDAD_MEDIDA)
+VALUES (PRODUCTO_SEQ.nextval,'Helado mantecado', FILE_TO_BLOB('Mantecado.jpg'), 'L');
 -- Marquesa de chocolate
-INSERT INTO PRODUCTO (ID, DESCRIPCION, UNIDAD_MEDIDA)
-VALUES (PRODUCTO_SEQ.nextval,'Mantequilla','Kg');
-INSERT INTO PRODUCTO (ID, DESCRIPCION, UNIDAD_MEDIDA)
-VALUES (PRODUCTO_SEQ.nextval,'Chocolate','Kg');
+INSERT INTO PRODUCTO (ID, DESCRIPCION, FOTO, UNIDAD_MEDIDA)
+VALUES (PRODUCTO_SEQ.nextval,'Mantequilla', FILE_TO_BLOB('Mantequilla.jpg'), 'Kg');
+INSERT INTO PRODUCTO (ID, DESCRIPCION, FOTO, UNIDAD_MEDIDA)
+VALUES (PRODUCTO_SEQ.nextval,'Chocolate', FILE_TO_BLOB('Chocolate.jpg'), 'Kg');
 
-INSERT INTO PRODUCTO (ID, DESCRIPCION, UNIDAD_MEDIDA)
-VALUES (PRODUCTO_SEQ.nextval,'Banana','Kg');
+INSERT INTO PRODUCTO (ID, DESCRIPCION, FOTO, UNIDAD_MEDIDA)
+VALUES (PRODUCTO_SEQ.nextval,'Banana', FILE_TO_BLOB('Banana.jpg'), 'Kg');
 
-INSERT INTO PRODUCTO (ID, DESCRIPCION, UNIDAD_MEDIDA)
-VALUES (PRODUCTO_SEQ.nextval,'Pasta lasaña','Kg');
+INSERT INTO PRODUCTO (ID, DESCRIPCION, FOTO, UNIDAD_MEDIDA)
+VALUES (PRODUCTO_SEQ.nextval,'Pasta lasaña', FILE_TO_BLOB('Lasagna.jpg'), 'Kg');
 
-INSERT INTO PRODUCTO (ID, DESCRIPCION, UNIDAD_MEDIDA)
-VALUES (PRODUCTO_SEQ.nextval,'Harina','Kg');
+INSERT INTO PRODUCTO (ID, DESCRIPCION, FOTO, UNIDAD_MEDIDA)
+VALUES (PRODUCTO_SEQ.nextval,'Harina', FILE_TO_BLOB('Harina.jpg'), 'Kg');
 
 -- PLATO_PRODUCTO
 -- PIZZA
@@ -619,5 +619,160 @@ BEGIN
                 end loop;
         END LOOP;
 end;
+
+-- INSERTS DE EVENTOS DEL LA SUCURSAL ALTAMIRA
+INSERT INTO EVENTO (CODIGO, NOMBRE, FECHA, GRUPO_MUSICAL, CONDICIONES, HORARIO, ID_SUCURSAL)
+VALUES (1,
+        'Evento musical de merengue',
+        TO_DATE('12/11/2022','dd/MM/yyyy'),
+        'Los Hermanos Rosario',
+        'El grupo musical tocará con sus instrumentos y cantará en vivo desde las 6:00 P.M. hatas las 9:00 P.M. con dos recesos de 15 min',
+        HORARIO(TO_DSINTERVAL('0 18:00:00'), TO_DSINTERVAL('0 21:00:00')),
+        1
+        );
+
+INSERT INTO EVENTO (CODIGO, NOMBRE, FECHA, GRUPO_MUSICAL, CONDICIONES, HORARIO, ID_SUCURSAL)
+VALUES (2,
+        'Evento musical de salsa',
+        TO_DATE('01/10/2022','dd/MM/yyyy'),
+        'Son de Azúcar',
+        'El grupo musical tocará con sus instrumentos y cantará en vivo desde las 6:00 P.M. hatas las 9:00 P.M. con dos recesos de 15 min',
+        HORARIO(TO_DSINTERVAL('0 18:00:00'), TO_DSINTERVAL('0 21:00:00')),
+        1
+        );
+
+INSERT INTO EVENTO (CODIGO, NOMBRE, FECHA, GRUPO_MUSICAL, CONDICIONES, HORARIO, ID_SUCURSAL)
+VALUES (3,
+        'Concierto de Rock Acidemia',
+        TO_DATE('17/01/2023','dd/MM/yyyy'),
+        'Acidemia',
+        'El grupo musical tocará con sus instrumentos y cantará en vivo en la tarima al lado de la barra desde las 8:00 P.M. hasta las 9:00 P.M.',
+        HORARIO(TO_DSINTERVAL('0 20:00:00'), TO_DSINTERVAL('0 21:00:00')),
+        1
+        );
+
+INSERT INTO EVENTO (CODIGO, NOMBRE, FECHA, GRUPO_MUSICAL, CONDICIONES, HORARIO, ID_SUCURSAL)
+VALUES (4,
+        'Tributo a The Beatles',
+        TO_DATE('19/01/2023','dd/MM/yyyy'),
+        '¡Ayuda!',
+        'El grupo musical tocará con sus instrumentos y cantará en vivo las 10 canciones del álbum "Let It Be" en la tarima al lado de la barra.',
+        HORARIO(TO_DSINTERVAL('0 20:00:00'), TO_DSINTERVAL('0 21:00:00')),
+        1
+        );
+
+INSERT INTO EVENTO (CODIGO, NOMBRE, FECHA, GRUPO_MUSICAL, CONDICIONES, HORARIO, ID_SUCURSAL)
+VALUES (5,
+        'Tributo a Adele',
+        TO_DATE('20/01/2023','dd/MM/yyyy'),
+        'María Moreno y Marco Núñez',
+        'La cantante cantará algunas canciones de Adele a petición de la audiencia en la tarima de la barra, acompañada del pianista Marco Núñez.',
+        HORARIO(TO_DSINTERVAL('0 19:00:00'), TO_DSINTERVAL('0 20:00:00')),
+        1
+        );
+
+
+-- INSERTS DE LOS EVENTOS MUSICALES DE LA SUCURSAL LA TRINIDAD
+INSERT INTO EVENTO (CODIGO, NOMBRE, FECHA, GRUPO_MUSICAL, CONDICIONES, HORARIO, ID_SUCURSAL)
+VALUES (1,
+        '¡Que viva Argentina!',
+        TO_DATE('13/01/2023','dd/MM/yyyy'),
+        'Manuel Salas',
+        'El acordionista tocará su lista de canciones desde el segundo piso desde las 12:00 P.M. hasta las 13:30 P.M.',
+        HORARIO(TO_DSINTERVAL('0 12:00:00'), TO_DSINTERVAL('0 13:30:00')),
+        2
+        );
+
+INSERT INTO EVENTO (CODIGO, NOMBRE, FECHA, GRUPO_MUSICAL, CONDICIONES, HORARIO, ID_SUCURSAL)
+VALUES (2,
+        'Evento mariachi',
+        TO_DATE('01/10/2022','dd/MM/yyyy'),
+        'Los mariachi',
+        'El grupo musical tocará con sus instrumentos y cantará en vivo desde las 8:30 P.M. hatas las 9:00 P.M. con dos recesos de 15 min',
+        HORARIO(TO_DSINTERVAL('0 20:30:00'), TO_DSINTERVAL('0 21:00:00')),
+        2
+        );
+
+INSERT INTO EVENTO (CODIGO, NOMBRE, FECHA, GRUPO_MUSICAL, CONDICIONES, HORARIO, ID_SUCURSAL)
+VALUES (3,
+        'Tributo a Mozart',
+        TO_DATE('01/02/2023','dd/MM/yyyy'),
+        'Juan Zerpa',
+        'El pianista tocará algunas piezas del compositor clásico desde las 7:00 P.M. hasta las 8:00 P.M.',
+        HORARIO(TO_DSINTERVAL('0 19:00:00'), TO_DSINTERVAL('0 20:00:00')),
+        2
+        );
+
+INSERT INTO EVENTO (CODIGO, NOMBRE, FECHA, GRUPO_MUSICAL, CONDICIONES, HORARIO, ID_SUCURSAL)
+VALUES (4,
+        'Tributo a Juan Luis Guerra',
+        TO_DATE('10/01/2023','dd/MM/yyyy'),
+        'Caramelos de Ajo',
+        'El grupo musical tocará con sus instrumentos y cantará en vivo en la tarima al lado de la barra desde las 7:00 P.M. hasta las 9:00 P.M.',
+        HORARIO(TO_DSINTERVAL('0 19:00:00'), TO_DSINTERVAL('0 21:00:00')),
+        2
+        );
+
+INSERT INTO EVENTO (CODIGO, NOMBRE, FECHA, GRUPO_MUSICAL, CONDICIONES, HORARIO, ID_SUCURSAL)
+VALUES (5,
+        'Concierto Fondo Blanco',
+        TO_DATE('20/01/2023','dd/MM/yyyy'),
+        'Fondo Blanco',
+        'El grupo musical tocará con sus instrumentos y cantará en vivo en la tarima al lado de la barra desde las 8:30 P.M. hasta las 21:30 P.M.',
+        HORARIO(TO_DSINTERVAL('0 20:30:00'), TO_DSINTERVAL('0 21:30:00')),
+        2
+        );
+
+
+-- INSERTS EVENTOS MUSICALES SUCURSAL LOS SAMANES
+INSERT INTO EVENTO (CODIGO, NOMBRE, FECHA, GRUPO_MUSICAL, CONDICIONES, HORARIO, ID_SUCURSAL)
+VALUES (1,
+        'Festival de salsa',
+        TO_DATE('12/12/2022','dd/MM/yyyy'),
+        'En Salsa',
+        'El grupo tocará sus instrumentos y cantará en vivo en el 2do piso desde las 12:00 P.M. hasta las 13:30 P.M.',
+        HORARIO(TO_DSINTERVAL('0 12:00:00'), TO_DSINTERVAL('0 13:30:00')),
+        3
+        );
+
+INSERT INTO EVENTO (CODIGO, NOMBRE, FECHA, GRUPO_MUSICAL, CONDICIONES, HORARIO, ID_SUCURSAL)
+VALUES (2,
+        'Casa dello Bossa',
+        TO_DATE('04/01/2023','dd/MM/yyyy'),
+        'Grupo Bossa',
+        'El grupo musical tocará con sus instrumentos y cantará en vivo desde las 8:30 P.M. hatas las 9:00 P.M. con dos recesos de 15 min',
+        HORARIO(TO_DSINTERVAL('0 20:30:00'), TO_DSINTERVAL('0 21:00:00')),
+        3
+        );
+
+INSERT INTO EVENTO (CODIGO, NOMBRE, FECHA, GRUPO_MUSICAL, CONDICIONES, HORARIO, ID_SUCURSAL)
+VALUES (3,
+        'Evento de Samba',
+        TO_DATE('29/01/2023','dd/MM/yyyy'),
+        'Samba Company ',
+        'El grupo musical tocará con sus instrumentos y cantará en vivo desde las 19:00 P.M. hatas las 8:30 P.M. con dos recesos de 15 min',
+        HORARIO(TO_DSINTERVAL('0 19:00:00'), TO_DSINTERVAL('0 20:30:00')),
+        3
+        );
+
+INSERT INTO EVENTO (CODIGO, NOMBRE, FECHA, GRUPO_MUSICAL, CONDICIONES, HORARIO, ID_SUCURSAL)
+VALUES (4,
+        'Evento Freecover',
+        TO_DATE('20/01/2023','dd/MM/yyyy'),
+        'Guaco',
+        'El grupo musical tocará con sus instrumentos y cantará en vivo en la tarima al lado de la barra desde las 7:00 P.M. hasta las 9:00 P.M.',
+        HORARIO(TO_DSINTERVAL('0 19:00:00'), TO_DSINTERVAL('0 21:00:00')),
+        3
+        );
+
+INSERT INTO EVENTO (CODIGO, NOMBRE, FECHA, GRUPO_MUSICAL, CONDICIONES, HORARIO, ID_SUCURSAL)
+VALUES (5,
+        'Yordano En Concierto',
+        TO_DATE('12/01/2023','dd/MM/yyyy'),
+        'Yordano',
+        'El grupo musical tocará con sus instrumentos y cantará en vivo en la tarima al lado de la barra desde las 8:30 P.M. hasta las 21:30 P.M.',
+        HORARIO(TO_DSINTERVAL('0 20:30:00'), TO_DSINTERVAL('0 21:30:00')),
+        3
+        );
 
 COMMIT;
